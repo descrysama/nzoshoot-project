@@ -1,3 +1,7 @@
-### Projet NZOSHOOT!
-[DSC07096](https://user-images.githubusercontent.com/63260058/171858254-a9666fc5-b144-426c-b41d-cf836fa759d6.JPG)
-![DSC07116](https://user-images.githubusercontent.com/63260058/171858258-007d2060-e6f1-424d-94ee-b36e5d7f457a.JPG)
+# Projet NZOSHOOT!
+
+###Diagramme de class : 
+![diagramme de classe](https://user-images.githubusercontent.com/63260058/171858363-f8f3a2b4-748c-43e8-a7f5-e97d63393de2.png)
+
+###UseCase :
+![usecase](https://user-images.githubusercontent.com/63260058/171858370-ce857647-f4ca-4ca2-8525-961060376176.png)
