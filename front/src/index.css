@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Kulim+Park:wght@300&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Kulim Park', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    background-color: #121212;
+}
+
+/* NAVBAR */
+nav {
+    background-color: 121212;
+    height: 100px;
+    border-bottom: 2px solid #ffffff21;
+    width: 80%;
+}
+
+.logo{
+    width: 100px;
+    padding: 10px;
+}
+
+nav ul {
+    text-align: center;
+    float: right;
+    margin-right: 20px;
+    
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 100px;
+    margin: 0 5px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 7px 13px;
+}
+
+a.active, a:hover{
+    background-color: rgb(24, 24, 24);
+    transition: 0.5s;
+}
+
+/* NAVBAR END */
+
+.yellowbutton {
+    border: 2px solid rgb(255, 255, 0);
+    color: white;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 10px;
+    cursor: pointer;
+    border-radius: 21px;
+}
+
+.yellowbutton:hover {
+    background-color: rgb(255, 255, 0);
+    color: black;
+    transition: 1s;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 100px;
+    margin-right: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media (max-width: 838px) {
+    .checkbtn {
+        display: block;
+    }
+    ul{
+        position: fixed;
+        width: 80%;
+        height: 100vh;
+        left: -100%;
+        background-color: #121212b9;
+        transition: all 0.5s;
+    }
+    nav ul li{
+        display: block;
+    }
+    nav ul li a {
+        font-size: 20px;
+    }
+
+    a:hover, a.active{
+        background: none;
+    }
+    #check:checked ~ ul{
+        left: 10%;
+    }
+}
