@@ -139,11 +139,15 @@ a.active, a:hover{
 p {
     font-size: 16px;
     line-height: 1.5;
-    width: 60%;
+    width: 80%;
 }
 
 .w-50 {
     width: 50%;
+}
+
+.w-75 {
+    width: 75%;
 }
 
 .h-50 {
@@ -183,6 +187,12 @@ p {
 #about-section{
     width: 100%;
     background: linear-gradient(135.18deg, #FFFFFF -15.2%, #E3E3E3 152.11%);
+    padding: 24px;
+}
+
+#testimonials-section{
+    width: 100%;
+    background-color: #121212;
     padding: 24px;
 }
 
@@ -237,5 +247,9 @@ p {
 
     #img-pro {
         width: 80%;
+    }
+
+    .w-75 {
+        width: 100%;
     }
 }

@@ -23,8 +23,8 @@ const Home = () => {
             </section>
             <section className='d-flex justify-content-center' id="about-section">
                 <div id="about-section-1" style={{width: '80%'}} className='d-flex align-items-center justify-content-center'>
-                    <div className='p-4 d-flex flex-direction-column justify-content-center align-items-center p-2'>
-                        <h3><span style={{color: 'rgb(255, 255, 0)', margin: '10px'}}>|</span> A propos de moi</h3>
+                    <div className='p-4 d-flex flex-direction-column p-2 w-75'>
+                        <h3 style={{margin: '30px'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> A propos de moi</h3>
                         <p>
                         Photographe polyvalent qui vit pour capturer des moments uniques avec mon style caractéristique. 
                         J'ai commencé mon aventure photographique en 2018 et j'ai rapidement embrassé les éléments fondamentaux qui font une bonne photo : l'éclairage, l'équilibre, la composition et l'utilisation de la perspective.
@@ -37,8 +37,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section>
-                
+            <section className='d-flex justify-content-center' id="testimonials-section">
+
             </section>
         </div>
     )
