@@ -1,6 +1,8 @@
-import nzoshoot from '../assets/images_content/nzoshoot.png'
-import logo from '../assets/images_content/nzoshoot_logo.png'
-import professionnal from '../assets/images_content/nzoshoot.webp'
+import logo from '../assets/images_content/nzoshoot_logo.png';
+import puma from '../assets/images_content/puma.png';
+import nestenn from '../assets/images_content/nestenn.png';
+import ldlc from '../assets/images_content/ldlc.png';
+import professionnal from '../assets/images_content/nzoshoot.webp';
 import 'animate.css';
 
 const Home = () => {
@@ -18,6 +20,7 @@ const Home = () => {
                         <a  className="social-links" href='https://www.instagram.com/nzoshoot/'><i className="fa-brands fa-instagram fa-lg white-icon m-2"></i></a>
                         <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-facebook-f fa-lg white-icon m-2"></i></a>
                     </ul>
+                    <a className='yellowbutton animate__animated animate__bounce animate__infinite infinite m-2' href="">Galerie</a>
                 </div>
                 <div className="w-50 right-content animate__animated animate__fadeIn" id='right-content'></div>
             </section>
@@ -37,8 +40,13 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className='d-flex justify-content-center' id="testimonials-section">
-
+            <section className='d-flex flex-direction-column justify-content-center align-items-center' id="testimonials-section">
+                <h3 style={{margin: '30px', color: 'white', fontWeight: 'normal'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> Ils m'ont fait confiance</h3>
+                <div style={{width: '80%', height: '300px',margin: '20px'}} className='d-flex justify-content-center align-items-center'>
+                    <img src={puma} style={{width: '30%'}} alt="" />
+                    <img src={ldlc} style={{width: '30%'}} alt="" />
+                    <img src={nestenn} style={{width: '30%'}} alt="" />
+                </div>
             </section>
         </div>
     )
