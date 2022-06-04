@@ -44,9 +44,10 @@ nav ul li{
 
 nav ul li a {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     text-transform: uppercase;
-    padding: 7px 13px;
+    padding: 15px 20px;
+    border-radius: 50px;
 }
 
 a.active, a:hover{
@@ -54,7 +55,7 @@ a.active, a:hover{
     transition: 0.5s;
 }
 
-/* NAVBAR END */
+
 
 .yellowbutton {
     border: 2px solid rgb(255, 255, 0);
@@ -77,6 +78,10 @@ a.active, a:hover{
 
 .d-flex {
     display: flex;
+}
+
+.flex-direction-column {
+    flex-direction: column;
 }
 
 .justify-content-center {
@@ -108,6 +113,7 @@ a.active, a:hover{
         left: -100%;
         background-color: #121212b9;
         transition: all 0.5s;
+        z-index: 100;
     }
     nav ul li{
         display: block;
@@ -122,4 +128,78 @@ a.active, a:hover{
     #check:checked ~ ul{
         left: 10%;
     }
+}
+
+/* NAVBAR END */
+
+
+
+.w-50 {
+    width: 50%;
+}
+
+.h-50 {
+    height: 50%;
+}
+
+.m-2 {
+    margin: 2rem;
+}
+
+.white-icon {
+    color: white;
+}
+
+.social-links {
+    padding: 10px 0px;
+}
+
+.social-links:hover {
+    background-color: #1a1a1ab9;
+    transition: 0.5s;
+    border-radius: 100px;
+}
+
+#home-section{
+    background: url(./assets/images_content/mixo.png);
+    background-size: cover;
+    height: calc(100vh - 80px);
+    width: 80%;
+    opacity: 1;
+}
+
+#about-section{
+    width: 80%;
+}
+
+.left-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.left-content h2 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 4rem;
+    color: white;
+    
+}
+
+.left-content h3 {
+    font-weight: 100;
+    font-size: 1rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+
+.right-content {
+    background: url(./assets/images_content/nzoshoot.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
