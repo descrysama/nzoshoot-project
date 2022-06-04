@@ -215,6 +215,7 @@ p {
     font-weight: 100;
     font-size: 1rem;
     color: white;
+    text-align: center;
     text-transform: uppercase;
 }
 
