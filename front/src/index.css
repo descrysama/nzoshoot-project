@@ -88,6 +88,10 @@ a.active, a:hover{
     justify-content: center;
 }
 
+.align-items-center {
+    align-items: center;
+}
+
 .checkbtn {
     font-size: 30px;
     color: white;
@@ -106,7 +110,7 @@ a.active, a:hover{
     .checkbtn {
         display: block;
     }
-    ul{
+    nav ul{
         position: fixed;
         width: 80%;
         height: 100vh;
@@ -132,7 +136,11 @@ a.active, a:hover{
 
 /* NAVBAR END */
 
-
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    width: 60%;
+}
 
 .w-50 {
     width: 50%;
@@ -144,6 +152,10 @@ a.active, a:hover{
 
 .m-2 {
     margin: 2rem;
+}
+
+.p-2 {
+    padding: 2rem;
 }
 
 .white-icon {
@@ -169,7 +181,9 @@ a.active, a:hover{
 }
 
 #about-section{
-    width: 80%;
+    width: 100%;
+    background: linear-gradient(135.18deg, #FFFFFF -15.2%, #E3E3E3 152.11%);
+    padding: 24px;
 }
 
 .left-content {
@@ -202,4 +216,26 @@ a.active, a:hover{
     justify-content: center;
     align-items: center;
     z-index: 10;
+}
+
+@media (max-width: 1235px) {
+    #right-content {
+        display: none;
+    }
+
+    #left-content {
+        width: 100%;
+    }
+
+    #about-section-1 {
+        display: block;
+    }
+
+    p {
+        width: 100%;
+    }
+
+    #img-pro {
+        width: 80%;
+    }
 }

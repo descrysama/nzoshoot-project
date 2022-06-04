@@ -12,9 +12,9 @@ const Navbar = () => {
                 </label>
                 <img className='logo' src={logo} alt="" />
                 <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Galerie</a></li>
-                    <li><a href="#">Formules</a></li>
+                    <li><a href="#">accueil</a></li>
+                    <li><a href="#">galerie</a></li>
+                    <li><a href="#">tarifs</a></li>
                     <a className='yellowbutton' href="">Contactez-moi</a>
                 </ul>
             </nav>
