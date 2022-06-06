@@ -51,8 +51,8 @@ nav ul li a {
 }
 
 a.active, a:hover{
-    background-color: rgb(24, 24, 24);
-    transition: 0.5s;
+    color: rgb(255, 255, 0);
+    transition: 1s;
 }
 
 
@@ -132,6 +132,12 @@ a.active, a:hover{
     #check:checked ~ ul{
         left: 10%;
     }
+
+    footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 /* NAVBAR END */
@@ -192,7 +198,7 @@ p {
 
 #testimonials-section{
     width: 100%;
-    background-color: #121212;
+    background-color: #0a0a0a;
     padding: 24px;
 }
 
