@@ -68,6 +68,7 @@ a.active, a:hover{
     margin: 4px 10px;
     cursor: pointer;
     border-radius: 21px;
+    background-color: transparent;
 }
 
 .yellowbutton:hover {
@@ -223,6 +224,10 @@ p {
     color: white;
     text-align: center;
     text-transform: uppercase;
+}
+
+h3 {
+    text-align: center;
 }
 
 

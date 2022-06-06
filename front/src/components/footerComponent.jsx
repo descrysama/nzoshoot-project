@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="d-flex" style={{justifyContent: 'space-around', backgroundColor: '#121212', padding: '18px 18px 18px 18px'}}>
             <div className="w-50" style={{textAlign:'center', color: 'white', justifyContent: 'center'}}>
                 <div className="d-flex flex-direction-column align-items-center justify-content-center" style={{padding: '10px'}}>
-                    <img src={logo} width="150px" style={{padding: '20px'}}/>
+                    <img src={logo} width="150px" style={{padding: '20px'}} alt="logo"/>
                     <p style={{marginBottom: '5px'}}>nzoshoot@gmail.com</p>
                     <p style={{marginBottom: '5px'}}>06.23.30.35.57</p>
                 </div>
@@ -17,6 +17,7 @@ const Footer = () => {
                     <a  className="social-links" href='https://www.youtube.com/channel/UCgtjeRpS3ixwNK-gZrST-Hw'><i className="fa-brands fa-youtube fa-lg white-icon m-2"></i></a>
                     <a  className="social-links" href='https://www.instagram.com/nzoshoot/'><i className="fa-brands fa-instagram fa-lg white-icon m-2"></i></a>
                     <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-facebook-f fa-lg white-icon m-2"></i></a>
+                    <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-snapchat fa-lg white-icon m-2"></i></a>
                 </ul>
                 <p style={{marginBottom: '5px'}}>Suivez moi sur mes reseaux</p>
             </div>

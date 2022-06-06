@@ -7,10 +7,6 @@ const Navbar = () => {
 
     const [checked, setChecked] = useState(false);
 
-    useEffect(() => {
-        console.log(checked)
-    }, [checked])
-
     return(
         <div className='d-flex justify-content-center'>
             <nav>
@@ -23,7 +19,7 @@ const Navbar = () => {
                     <li><Link onClick={() => setChecked(false)} to='/'>Accueil</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/galerie'>Galerie</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/tarifs'>Tarifs</Link></li>
-                    <a className='yellowbutton' href="">Contactez-moi</a>
+                    <button className='yellowbutton'>Contactez-moi</button>
                 </ul>
             </nav>
         </div>

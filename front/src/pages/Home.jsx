@@ -23,8 +23,9 @@ const Home = () => {
                         <a  className="social-links" href='https://www.youtube.com/channel/UCgtjeRpS3ixwNK-gZrST-Hw'><i className="fa-brands fa-youtube fa-lg white-icon m-2"></i></a>
                         <a  className="social-links" href='https://www.instagram.com/nzoshoot/'><i className="fa-brands fa-instagram fa-lg white-icon m-2"></i></a>
                         <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-facebook-f fa-lg white-icon m-2"></i></a>
+                        <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-snapchat fa-lg white-icon m-2"></i></a>
                     </ul>
-                    <a className='yellowbutton animate__animated animate__bounce animate__infinite infinite m-2' href="">Galerie</a>
+                    <button className='yellowbutton animate__animated animate__bounce animate__infinite infinite m-2'>Galerie</button>
                 </div>
                 <div className="w-50 right-content animate__animated animate__fadeIn" id='right-content'></div>
             </section>
@@ -40,7 +41,7 @@ const Home = () => {
                         </p>
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
-                        <img id="img-pro" src={professionnal}/>
+                        <img id="img-pro" src={professionnal} alt="nzoshoot professionnel"/>
                     </div>
                 </div>
             </section>
