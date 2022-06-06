@@ -3,10 +3,14 @@ import puma from '../assets/images_content/puma.png';
 import nestenn from '../assets/images_content/nestenn.png';
 import ldlc from '../assets/images_content/ldlc.png';
 import professionnal from '../assets/images_content/nzoshoot.webp';
+import Navbar from "../components/navbarComponent";
+import Footer from "../components/footerComponent";
 import 'animate.css';
 
 const Home = () => {
     return (
+        <>
+        <Navbar />
         <div className="d-flex flex-direction-column align-items-center">
             <section className='d-flex' id='home-section'>
                 <div className="w-50 left-content flex-direction-column animate__animated animate__fadeIn" id='left-content'>
@@ -49,6 +53,8 @@ const Home = () => {
                 </div>
             </section>
         </div>
+        <Footer />
+        </>
     )
 }
 
