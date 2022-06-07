@@ -19,7 +19,7 @@ const Navbar = () => {
                     <li><Link onClick={() => setChecked(false)} to='/'>Accueil</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/galerie'>Galerie</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/tarifs'>Tarifs</Link></li>
-                    <button className='yellowbutton'>Contactez-moi</button>
+                    <Link to="/contactez-moi" className='yellowbutton'>Contactez-moi</Link>
                 </ul>
             </nav>
         </div>

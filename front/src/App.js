@@ -6,6 +6,7 @@ import Galerie from './pages/Galerie';
 import AlbumContent from './pages/AlbumContent';
 import Tarifs from './pages/Tarifs';
 import Error404 from './pages/Error404';
+import ContactMe from './pages/ContactMe';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/galerie' element={<Galerie/>}></Route>
           <Route path='/tarifs' element={<Tarifs/>}></Route>
           <Route path='/album/:albumid' element={<AlbumContent/>}></Route>
+          <Route path='/contactez-moi' element={<ContactMe/>}></Route>
           <Route path='*' element={<Error404/>}></Route>
         </Routes>
       </BrowserRouter>
