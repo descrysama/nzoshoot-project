@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('formules', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // nom de la formule
+            $table->mediumText('time')->nullable(); // Temps attribué à la prise de vue
+            $table->mediumText('description')->nullable(); // Description de la formule
+            $table->mediumText('photos')->nullable(); // Nombre de photos
             $table->string('plan_price')->nullable(); // Prix de la formule
-            $table->mediumText('plan_attribute')->nullable(); // Description sous forme de liste en format JSON
             $table->timestamps();
         });
     }

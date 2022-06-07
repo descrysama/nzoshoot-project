@@ -27,7 +27,7 @@ const AlbumContent = () => {
         <>
         <Navbar />
         <div className="d-flex justify-content-center align-items-center m-2">
-            <Link to="/galerie"><i class="fa-solid fa-arrow-left-long white-icon fa-lg"></i> Retour</Link>
+            <Link to="/galerie"><i className="fa-solid fa-arrow-left-long white-icon fa-lg"></i> Retour</Link>
         </div>
         <div className="d-flex justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
             {loading ? 
@@ -39,12 +39,10 @@ const AlbumContent = () => {
             </div>
             :
             images.map((item, key) => (
-                    <>
-                        <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{margin: "10px", textAlign: 'center'}}>
-                            <img src={item.image_path} alt={item.description} onClick={handleShow} width="80%"/>
-                            <p className="album-info m-2">{item.description}</p>
-                        </div>
-                    </>
+                <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{margin: "10px", textAlign: 'center'}}>
+                    <img src={item.image_path} alt={item.description} onClick={handleShow} width="80%"/>
+                    <p className="album-info m-2">{item.description}</p>
+                </div>
             ))
             }
 
