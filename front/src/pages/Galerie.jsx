@@ -2,6 +2,7 @@ import Navbar from "../components/navbarComponent";
 import Footer from "../components/footerComponent";
 import * as ServiceAlbum from '../services/ServiceAlbum';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Galerie = () => {
@@ -10,8 +11,7 @@ const Galerie = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        ServiceAlbum.FetchAll().then(res => {
-            console.log(res)
+        ServiceAlbum.FetchAllAlbums().then(res => {
             setAlbums(res)
             setLoading(false)
         });
@@ -22,11 +22,11 @@ const Galerie = () => {
         <Navbar />
         <div className="d-flex justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
             {loading ? 
-            <i class="fa-solid fa-spinner fa-2xl white-icon m-2"></i>
+            <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
             :
             albums.map((item, key) => (
                 <div key={key} className="album-card col-lg" style={{margin: "10px"}}>
-                    <a href={"/album/" + item.id}><img src={item.cover_path} alt={item.name} width="250px"/></a>
+                    <Link to={"/album/" + item.id}><img src={item.cover_path} alt={item.name} width="250px"/></Link>
                     <p className="album-info">{item.name}, {item.place}</p>
                 </div>
             ))

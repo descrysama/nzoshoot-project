@@ -24,5 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/formules', [FormuleController::class, 'index']);
 Route::get('/albums', [AlbumController::class, 'index']);
-Route::get('/images/{album_id}', [ImageController::class, 'index']);
+Route::get('/album/{album_id}', [ImageController::class, 'index']);
 

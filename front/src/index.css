@@ -16,6 +16,10 @@ body {
     background-color: #121212;
 }
 
+a:visited {
+    color: white;
+}
+
 /* NAVBAR */
 nav {
     background-color: 121212;
@@ -283,6 +287,8 @@ h3 {
     font-weight: 400;
     width: 100%;   
 }
+
+
 
 
 .album-card img:hover {

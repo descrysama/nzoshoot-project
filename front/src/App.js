@@ -3,6 +3,7 @@ import './index.css';
 import './bootstrap.min.css';
 import Home from './pages/Home';
 import Galerie from './pages/Galerie';
+import AlbumContent from './pages/AlbumContent';
 import Tarifs from './pages/Tarifs';
 import Error404 from './pages/Error404';
 
@@ -13,7 +14,7 @@ function App() {
           <Route path='/' element={<Home/>}></Route>
           <Route path='/galerie' element={<Galerie/>}></Route>
           <Route path='/tarifs' element={<Tarifs/>}></Route>
-          <Route path='/private/login' element={<Tarifs/>}></Route>
+          <Route path='/album/:albumid' element={<AlbumContent/>}></Route>
           <Route path='*' element={<Error404/>}></Route>
         </Routes>
       </BrowserRouter>
