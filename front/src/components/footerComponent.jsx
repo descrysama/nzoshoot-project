@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="d-flex" style={{justifyContent: 'space-around', backgroundColor: '#121212', padding: '18px 18px 18px 18px'}}>
             <div className="w-50" style={{textAlign:'center', color: 'white', justifyContent: 'center'}}>
                 <div className="d-flex flex-direction-column align-items-center justify-content-center" style={{padding: '10px'}}>
-                    <img src={logo} width="150px" style={{padding: '20px'}} alt="logo"/>
+                    <img src={logo} width="150px" alt="logo nzoshoot" style={{padding: '20px'}} />
                     <p style={{marginBottom: '5px'}}>nzoshoot@gmail.com</p>
                     <p style={{marginBottom: '5px'}}>06.23.30.35.57</p>
                 </div>

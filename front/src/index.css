@@ -81,8 +81,16 @@ a.active, a:hover{
     display: flex;
 }
 
+.container {
+    flex-wrap: wrap;
+}
+
 .flex-direction-column {
     flex-direction: column;
+}
+
+.flex-direction-row {
+    flex-direction: row;
 }
 
 .justify-content-center {
@@ -106,6 +114,7 @@ a.active, a:hover{
 #check {
     display: none;
 }
+
 
 @media (max-width: 838px) {
     .checkbtn {
@@ -265,3 +274,21 @@ h3 {
         width: 100%;
     }
 }
+
+
+/* ALBUM CARD */
+
+.album-info {
+    color: white;
+    font-weight: 400;
+    width: 100%;   
+}
+
+
+.album-card img:hover {
+    box-shadow: 0px 0px 20px 0px rgba(255, 255, 0, 0.5);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/* ALBUM CARD END */

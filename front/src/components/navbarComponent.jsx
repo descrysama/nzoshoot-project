@@ -1,7 +1,7 @@
 import '../index.css';
 import logo from '../assets/images_content/nzoshoot_logo.png';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Navbar = () => {
 
