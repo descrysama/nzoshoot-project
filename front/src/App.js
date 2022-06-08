@@ -11,7 +11,9 @@ import Tarifs from './pages/Tarifs';
 import Error404 from './pages/Error404';
 import ContactMe from './pages/ContactMe';
 import Login from './pages/admin/Login';
-import Dashboard from './pages/admin/Dashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminAlbums from './pages/admin/AdminAlbums';
+import AdminTarifs from './pages/admin/AdminTarifs';
 
 function App() {
   
@@ -27,7 +29,9 @@ function App() {
 
           {/* ADMIN ROUTES */}
           <Route path='/admin/login' element={<Login/>}></Route>
-          <Route path='/admin/dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}></Route>
+          <Route path='/admin/dashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}></Route>
+          <Route path='/admin/albums' element={<ProtectedRoute><AdminAlbums/></ProtectedRoute>}></Route>
+          <Route path='/admin/tarifs' element={<ProtectedRoute><AdminTarifs/></ProtectedRoute>}></Route>
 
 
           <Route path='*' element={<Error404/>}></Route>

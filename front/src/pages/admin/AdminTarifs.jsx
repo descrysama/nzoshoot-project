@@ -1,6 +1,6 @@
 import AdminNavbar from "../../components/admin/adminNavbarComponent";
 
-const Dashboard = () => {
+const AdminTarifs = () => {
 
     return(
         <>
@@ -9,4 +9,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+export default AdminTarifs;

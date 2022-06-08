@@ -43,7 +43,7 @@ const Login = () => {
 
 
     return(
-        <div className="d-flex flex-direction-column align-items-center justify-content-center p-2" style={{height: '100vh'}}>
+        <div className="d-flex flex-direction-column align-items-center justify-content-center animate__animated animate__fadeIn p-2" style={{height: '100vh'}}>
             <img src={logo} alt="logo nzshoot" width="120px"/>
             <h4 style={{color: 'white'}}>Gestion de contenu</h4>
             {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}

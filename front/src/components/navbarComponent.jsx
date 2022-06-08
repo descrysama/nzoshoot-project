@@ -8,7 +8,7 @@ const Navbar = () => {
     const [checked, setChecked] = useState(false);
 
     return(
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-center animate__animated animate__fadeIn'>
             <nav>
                 <input type="checkbox" id="check" checked={checked} onChange={() => setChecked(!checked)}/>
                 <label htmlFor="check" className='checkbtn'>
