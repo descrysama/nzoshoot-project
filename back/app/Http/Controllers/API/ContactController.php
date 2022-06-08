@@ -20,7 +20,7 @@ class ContactController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => 'max:255',
             'email' => 'required|email|max:255',
-            'message' => 'required|max:800',
+            'message' => 'required|max:1000',
             'phone_number' => 'max:24'
         ]);
         

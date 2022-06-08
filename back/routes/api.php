@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AlbumController;
 use App\Http\Controllers\API\FormuleController;
 use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/auth/check', [UserController::class, 'checkauth']);
 
+//Routes publiques non protégées 
 
 Route::get('/tarifs', [FormuleController::class, 'index']);
 Route::get('/albums', [AlbumController::class, 'index']);
 Route::get('/album/{album_id}', [ImageController::class, 'index']);
-
-Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store']);
 
+// Routes protégées pour l'administration
+
+Route::post('/login', [UserController::class , 'login']); // Login
+Route::post('/register', [UserController::class , 'store']); // Création d'un utilisateur pour la production (à supprimer avant le deploiement)

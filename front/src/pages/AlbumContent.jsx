@@ -3,7 +3,6 @@ import Footer from "../components/footerComponent";
 import * as ServiceAlbum from '../services/ServiceAlbum';
 import { useEffect, useState } from "react";
 import { useLocation, Link } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal';
 
 
 const AlbumContent = () => {

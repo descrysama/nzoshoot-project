@@ -47,9 +47,9 @@ const Home = () => {
             <section className='d-flex flex-direction-column justify-content-center align-items-center' id="testimonials-section">
                 <h3 style={{margin: '30px', color: 'white', fontWeight: 'normal'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> Ils m'ont fait confiance</h3>
                 <div style={{width: '80%', height: '300px',margin: '20px'}} className='d-flex justify-content-center align-items-center'>
-                    <img src={puma} style={{width: '30%'}} alt="" />
-                    <img src={ldlc} style={{width: '30%'}} alt="" />
-                    <img src={nestenn} style={{width: '30%'}} alt="" />
+                    <img src={puma} style={{width: '20%'}} alt="" />
+                    <img src={ldlc} style={{width: '20%'}} alt="" />
+                    <img src={nestenn} style={{width: '20%'}} alt="" />
                 </div>
             </section>
         </div>

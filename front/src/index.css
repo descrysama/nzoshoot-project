@@ -85,6 +85,10 @@ a.active, a:hover{
     display: flex;
 }
 
+.d-block {
+    display: block;
+}
+
 .container {
     flex-wrap: wrap;
 }
@@ -170,12 +174,20 @@ p {
     width: 75%;
 }
 
+.w-100 {
+    width: 100%;
+}
+
 .h-50 {
     height: 50%;
 }
 
 .m-2 {
     margin: 2rem;
+}
+
+.mb-2 {
+    margin-bottom: 1.5rem;
 }
 
 .p-2 {
@@ -386,6 +398,28 @@ form {
 .form-input:focus, .form-input:active {
     box-shadow: 0px 0px 5px 0px rgba(255, 255, 0);
     outline: none;
+}
+
+.error-badge {
+    color: white;
+    font-size: 16px;
+    margin-top: 8px;
+    background-color: rgb(211, 0, 0);
+    max-width: 600px;
+    padding: 8px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.success-badge {
+    color: white;
+    font-size: 16px;
+    margin-top: 8px;
+    background-color: rgb(18, 153, 0);
+    max-width: 600px;
+    padding: 8px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 @media (max-width: 757px) {
