@@ -22,7 +22,7 @@ const ContactMe = () => {
         e.preventDefault();
 
         if (email && message) {
-            axios.post('http://127.0.0.1:8000/api/contact', {
+            axios.post(`${process.env.REACT_APP_API}/contact`, {
             name: name,
             email: email,
             phone_number: phoneNumber,

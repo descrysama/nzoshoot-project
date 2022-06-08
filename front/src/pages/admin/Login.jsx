@@ -13,7 +13,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (email && password) {
-            axios.post('http://127.0.0.1:8000/api/login', {
+            axios.post(`${process.env.REACT_APP_API}/login`, {
                 email: email,
                 password: password
             }).then(res => {
@@ -23,7 +23,7 @@ const Login = () => {
                         text: 'Connexion réussie, redirection...'
                     })
                     localStorage.setItem('session_token', res.data.user.session_token);
-                    navigate('/admin/dashboard');
+                    navigate('/ns-nimda/dashboard');
                 } else {
                     setError({
                         status: false,

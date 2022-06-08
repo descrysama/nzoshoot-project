@@ -23,7 +23,6 @@ const Home = () => {
                         <a  className="social-links" href='https://www.youtube.com/channel/UCgtjeRpS3ixwNK-gZrST-Hw'><i className="fa-brands fa-youtube fa-sm white-icon m-2"></i></a>
                         <a  className="social-links" href='https://www.instagram.com/nzoshoot/'><i className="fa-brands fa-instagram fa-sm white-icon m-2"></i></a>
                         <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-facebook-f fa-sm white-icon m-2"></i></a>
-                        <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-snapchat fa-sm white-icon m-2"></i></a>
                     </ul>
                 </div>
                 <div className="w-50 right-content animate__animated animate__fadeIn" id='right-content'></div>

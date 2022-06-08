@@ -1,13 +1,13 @@
 
 export const FetchAllAlbums = async() => {
-    let response = await fetch('http://127.0.0.1:8000/api/albums');
+    let response = await fetch(`${process.env.REACT_APP_API}/albums`);
     let data = await response.json();
     return data;
     
 }
 
 export const FetchAllImages = async(albumid) => {
-    let response = await fetch('http://127.0.0.1:8000/api' + albumid);
+    let response = await fetch(`${process.env.REACT_APP_API}` + albumid);
     let data = await response.json();
     return data;
 }

@@ -16,7 +16,7 @@ import AdminAlbums from './pages/admin/AdminAlbums';
 import AdminTarifs from './pages/admin/AdminTarifs';
 
 function App() {
-  
+  console.log(process.env.REACT_APP_API)
   return (
       <BrowserRouter>
         <Routes>
@@ -28,10 +28,10 @@ function App() {
           <Route path='/contactez-moi' element={<ContactMe/>}></Route>
 
           {/* ADMIN ROUTES */}
-          <Route path='/admin/login' element={<Login/>}></Route>
-          <Route path='/admin/dashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}></Route>
-          <Route path='/admin/albums' element={<ProtectedRoute><AdminAlbums/></ProtectedRoute>}></Route>
-          <Route path='/admin/tarifs' element={<ProtectedRoute><AdminTarifs/></ProtectedRoute>}></Route>
+          <Route path='/ns-nimda/login' element={<Login/>}></Route>
+          <Route path='/ns-nimda/dashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}></Route>
+          <Route path='/ns-nimda/albums' element={<ProtectedRoute><AdminAlbums/></ProtectedRoute>}></Route>
+          <Route path='/ns-nimda/tarifs' element={<ProtectedRoute><AdminTarifs/></ProtectedRoute>}></Route>
 
 
           <Route path='*' element={<Error404/>}></Route>
