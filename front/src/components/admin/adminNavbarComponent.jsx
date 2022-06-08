@@ -1,11 +1,15 @@
 import '../../index.css';
 import logo from '../../assets/images_content/nzoshoot_logo.png';
-import { Link } from 'react-router-dom';
+import { Link,  Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const AdminNavbar = () => {
 
     const [checked, setChecked] = useState(false);
+
+    const logOut = () => {
+        localStorage.removeItem('session_token');
+    }
 
     return(
         <div className='d-flex justify-content-center'>
@@ -19,6 +23,8 @@ const AdminNavbar = () => {
                     <li><Link onClick={() => setChecked(false)} to='/admin/dashboard'>Accueil</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/admin/album'>Albums</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/admin/tarifs'>Tarifs</Link></li>
+                    <li><Link onClick={() => setChecked(false)} to='/admin/tarifs'>Tarifs</Link></li>
+                    <Link to="/admin/login" onClick={() => logOut()} className='yellowbutton'>Deconnexion</Link>
                 </ul>
             </nav>
         </div>
