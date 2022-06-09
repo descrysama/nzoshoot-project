@@ -65,7 +65,7 @@ class AlbumController extends Controller
         $user = User::where('session_token', $request->session_token)->first();
         
         if($user) {
-            $album = Album::find($albumid)->first();
+            $album = Album::where('id', $albumid)->first();
             $album->delete();
             return response()->json(['status' => true]);
         } else {
