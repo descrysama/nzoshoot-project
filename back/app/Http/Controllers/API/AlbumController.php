@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -59,8 +60,16 @@ class AlbumController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Album $album)
+    public function destroy($albumid, Request $request)
     {
-        //
+        $user = User::where('session_token', $request->session_token)->first();
+        
+        if($user) {
+            $album = Album::find($albumid)->first();
+            $album->delete();
+            return response()->json(['status' => true]);
+        } else {
+            return response()->json(['status' => false]);
+        }
     }
 }

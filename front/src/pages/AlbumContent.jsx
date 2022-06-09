@@ -8,9 +8,6 @@ import { useLocation, Link } from 'react-router-dom';
 const AlbumContent = () => {
 
     const [images, setImages] = useState([]);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [loading, setLoading] = useState(true);
     let location = useLocation();
     
@@ -39,7 +36,7 @@ const AlbumContent = () => {
             :
             images.map((item, key) => (
                 <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{margin: "10px", textAlign: 'center'}}>
-                    <img src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} onClick={handleShow} width="80%"/>
+                    <img src={`${process.env.REACT_APP_IMAGE}/`+ item.image_path} alt={item.description} width="80%"/>
                     <p className="album-info m-2">{item.description}</p>
                 </div>
             ))

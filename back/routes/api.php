@@ -19,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/auth/check', [UserController::class, 'checkauth']);
+// Authentification 
+
+Route::post('/auth/check', [UserController::class, 'checkauth']); // permet de verifier le token et donc l'authentification de l'utilsateur
+Route::post('/login', [UserController::class , 'login']); // Login
+Route::post('/register', [UserController::class , 'store']); // Création d'un utilisateur pour la production (à supprimer avant le deploiement)
 
 //Routes publiques non protégées 
 
@@ -30,5 +34,5 @@ Route::post('/contact', [ContactController::class, 'store']);
 
 // Routes protégées pour l'administration
 
-Route::post('/login', [UserController::class , 'login']); // Login
-Route::post('/register', [UserController::class , 'store']); // Création d'un utilisateur pour la production (à supprimer avant le deploiement)
+Route::get('/contact/{token}', [ContactController::class, 'index']);
+Route::post('/album/delete/{album_id}', [AlbumController::class, 'destroy']);

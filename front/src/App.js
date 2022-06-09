@@ -16,7 +16,6 @@ import AdminAlbums from './pages/admin/AdminAlbums';
 import AdminTarifs from './pages/admin/AdminTarifs';
 
 function App() {
-  console.log(process.env.REACT_APP_API)
   return (
       <BrowserRouter>
         <Routes>

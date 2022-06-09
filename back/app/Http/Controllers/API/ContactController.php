@@ -6,13 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\User;
 
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index($token)
     {
-        return Contact::all();
+        $user = User::where('session_token', $token)->first();
+        if ($user) {
+            return response()->json(Contact::all());
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 
     public function store(Request $request)
