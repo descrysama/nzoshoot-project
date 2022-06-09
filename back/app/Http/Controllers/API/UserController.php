@@ -29,7 +29,7 @@ class UserController extends Controller
             ]);
         } else {
             $user = User::where('email', $request->email)->first();
-            $session_token = str::random(40);
+            $session_token = str::random(80);
             if ($user) {
                 if (Hash::check($request->password, $user->password)) {
                     $user->session_token = $session_token;

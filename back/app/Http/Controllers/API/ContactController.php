@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\User;
-
+use App\Mail\ResetPassword;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -42,7 +43,7 @@ class ContactController extends Controller
             $contact->phone_number = $request->phone_number;
             $contact->message = $request->message;
             $contact->save();
-
+            Mail::to('naxaj51871@iconzap.com')->send(new ResetPassword($contact));
             return response()->json([
                 'status' => true
             ], 201);

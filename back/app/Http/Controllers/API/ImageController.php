@@ -15,8 +15,8 @@ class ImageController extends Controller
      */
     public function index($album_id)
     {
-        $formules = Image::where('album_id', $album_id)->get();
-        return response()->json($formules);
+        $images = Image::where('album_id', $album_id)->get();
+        return response()->json($images);
     }
 
     /**
