@@ -22,4 +22,19 @@ export const DeleteAlbum = async(albumid) => {
     return response;
 }
 
+export const createAlbum = async(nameValue, placeValue, coverValue) => {
+    let token = localStorage.getItem('session_token');
+    let response = await axios.post(`${process.env.REACT_APP_API}/album/create`, {
+        name: nameValue,
+        place: placeValue,
+        cover_path: coverValue,
+        session_token: token
+    }, {
+        headers: {
+            "Content-type": "multipart/form-data",
+        }
+    })
+    return response;
+}
+
 

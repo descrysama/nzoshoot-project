@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\File;
 
 class AlbumController extends Controller
 {
@@ -28,7 +30,22 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::where('session_token', $request->token)->first();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'place' => 'required|max:255',
+            'cover_path' => 'required|image|mimes:jpeg,png,jpg,svg'
+        ]);
+        if ($user && $validator->passes()) {
+            $album = new Album();
+            $album->name = $request->name;
+            $request->file("cover_path")->store('public/documents/covers/');
+            $album->cover_path = $request->cover_path;
+            $album->place = $request->place;
+            $album->save();
+            return response()->json($album);
+        }
     }
 
     /**

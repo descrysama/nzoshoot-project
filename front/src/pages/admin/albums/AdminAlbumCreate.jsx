@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AdminNavbar from "../../../components/admin/adminNavbarComponent";
+import * as ServiceAlbum from "../../../services/ServiceAlbum";
 
 const AdminAlbumCreate = () => {
 
@@ -9,8 +10,12 @@ const AdminAlbumCreate = () => {
     const [cover, setCover] = useState('');
 
 
-    const handleSubmit = (albumid) => {
-        console.log(albumid);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(cover)
+        ServiceAlbum.createAlbum(name, place, cover[0]).then(res => {
+            console.log(res);
+        })
     }
 
     return(
@@ -18,7 +23,7 @@ const AdminAlbumCreate = () => {
             <AdminNavbar/>
             <div className="d-flex flex-direction-column align-items-center animate__animated animate__fadeIn">
                 <h3 className="m-2" style={{color: 'white'}}>Ajouter un album :</h3>
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
                         <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Voyage"/>
@@ -29,7 +34,7 @@ const AdminAlbumCreate = () => {
                     </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Cover <span style={{color: 'red'}}>*</span> : </label>
-                        <input className="form-input" name="place" type="file" multiple value={cover} onChange={(e) => setCover(e.target.value)} placeholder="Nzo Shoot"/>
+                        <input className="form-input" name="cover_path" type="file" multiple onChange={(e) => setCover(e.target.files)} placeholder="Nzo Shoot"/>
                     </div>
                     <input className="yellowbutton" type="submit" value='Envoyer'/>
                 </form>

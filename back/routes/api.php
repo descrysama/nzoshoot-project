@@ -36,3 +36,4 @@ Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/contact/{token}', [ContactController::class, 'index']);
 Route::post('/album/delete/{album_id}', [AlbumController::class, 'destroy']);
+Route::post('/album/create', [AlbumController::class, 'store']);
