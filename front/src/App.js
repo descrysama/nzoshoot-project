@@ -12,7 +12,8 @@ import Error404 from './pages/Error404';
 import ContactMe from './pages/ContactMe';
 import Login from './pages/admin/Login';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminAlbums from './pages/admin/AdminAlbums';
+import AdminAlbums from './pages/admin/albums/AdminAlbums';
+import AdminAlbumsCreate from './pages/admin/albums/AdminAlbumCreate';
 import AdminTarifs from './pages/admin/AdminTarifs';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path='/ns-nimda/login' element={<Login/>}></Route>
           <Route path='/ns-nimda/dashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/albums' element={<ProtectedRoute><AdminAlbums/></ProtectedRoute>}></Route>
+          <Route path='/ns-nimda/albums/create' element={<ProtectedRoute><AdminAlbumsCreate/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/tarifs' element={<ProtectedRoute><AdminTarifs/></ProtectedRoute>}></Route>
 
 
