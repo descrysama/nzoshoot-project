@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "place",
+        "name",
+        "cover_path"
+    ];
 }

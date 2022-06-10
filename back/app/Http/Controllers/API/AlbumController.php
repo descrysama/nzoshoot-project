@@ -7,7 +7,7 @@ use App\Models\Album;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\File;
+use Illuminate\Support\Str;
 
 class AlbumController extends Controller
 {
@@ -30,21 +30,35 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::where('session_token', $request->token)->first();
-
+        $user = User::where('session_token', $request->session_token)->first();
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'place' => 'required|max:255',
-            'cover_path' => 'required|image|mimes:jpeg,png,jpg,svg'
+            'cover_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
-        if ($user && $validator->passes()) {
-            $album = new Album();
-            $album->name = $request->name;
-            $request->file("cover_path")->store('public/documents/covers/');
-            $album->cover_path = $request->cover_path;
-            $album->place = $request->place;
-            $album->save();
-            return response()->json($album);
+        if ($user) {
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'text' => 'Erreur, Verifes les champs.'
+                ]);
+                return response()->json(['error' => $validator->errors()]);
+            } else {
+                $filename = str::random(40). '.'.$request->cover_path->getClientOriginalExtension();
+                $request->cover_path->move('documents/covers/', $filename);
+
+                $album = new Album();
+                $album->name = $request->name;
+                $album->place = $request->place;
+                $album->cover_path = '/documents/covers/'. $filename;
+                $album->save();
+    
+                return response()->json([
+                    'status' => true,
+                    'text' => 'Album ajouté avec succès.'
+                ]);
+            }
+
         }
     }
 
