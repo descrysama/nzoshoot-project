@@ -7,8 +7,8 @@ export const FetchAllAlbums = async() => {
     
 }
 
-export const FetchAllImages = async(albumid) => {
-    let response = await fetch(`${process.env.REACT_APP_API}` + albumid);
+export const FetchAllImages = async(albumurl) => {
+    let response = await fetch(`${process.env.REACT_APP_API}` + albumurl);
     let data = await response.json();
     return data;
 }
@@ -37,4 +37,8 @@ export const createAlbum = async(nameValue, placeValue, coverValue) => {
     return response;
 }
 
-
+export const editAlbum = async(albumurl) => {
+    let response = await fetch(`${process.env.REACT_APP_API}` + albumurl);
+    let data = await response.json();
+    return data;
+}
