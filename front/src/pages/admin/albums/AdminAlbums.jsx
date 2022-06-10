@@ -39,7 +39,7 @@ const AdminAlbums = () => {
                             <p className="album-info" style={{margin: '0.5rem'}}>{item.name}, {item.place}</p>
                             <ul>
                                 <li onClick={() => HandleSubmit(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
-                                <Link to="" className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
+                                <Link to={`${item.id}`} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
                             </ul>
                         </div>
                     ))}
