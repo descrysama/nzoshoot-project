@@ -16,7 +16,7 @@ const AdminAlbumEdit = () => {
 
     const [name, setName] = useState('');
     const [place, setPlace] = useState('');
-    const [cover, setCover] = useState('');
+    const [cover, setCover] = useState();
     //
 
     let location = useLocation();
@@ -34,6 +34,13 @@ const AdminAlbumEdit = () => {
         // })
         setLoading(false);
     }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        ServiceAlbum.updateAlbum(url[url.length - 1], name, place, cover[0]).then(res => {
+            console.log(res)
+        })
+    }
     
     return(
         <>
@@ -42,7 +49,7 @@ const AdminAlbumEdit = () => {
             {loading ? 
                 <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
             :
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <img style={{margin: '0.5rem'}} src={`${process.env.REACT_APP_IMAGE}`+ album.cover_path} alt={album.name} width="120px"/>
                 <div className="form-group mb-2">
                     <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>

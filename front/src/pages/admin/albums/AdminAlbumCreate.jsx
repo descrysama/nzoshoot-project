@@ -36,7 +36,7 @@ const AdminAlbumCreate = () => {
                     </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="cover_path">Cover <span style={{color: 'red'}}>*</span> : </label>
-                        <input className="form-input" name="cover_path" type="file" onChange={(e) => setCover(e.target.files)} placeholder="Nzo Shoot"/>
+                        <input className="form-input" name="cover_path" type="file" onChange={(e) => setCover(e.target.files)} />
                     </div>
                     <input className="yellowbutton" type="submit" value='Envoyer'/>
                 </form>

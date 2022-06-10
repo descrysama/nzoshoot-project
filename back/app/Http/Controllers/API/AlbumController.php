@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File; 
 
 class AlbumController extends Controller
 {
@@ -40,9 +41,9 @@ class AlbumController extends Controller
             if ($validator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'text' => 'Erreur, Verifes les champs.'
+                    'text' => 'Erreur, Verifies les champs.',
+                    'error' => $validator->errors()
                 ]);
-                return response()->json(['error' => $validator->errors()]);
             } else {
                 $filename = str::random(40). '.'.$request->cover_path->getClientOriginalExtension();
                 $request->cover_path->move('documents/covers/', $filename);
@@ -81,9 +82,41 @@ class AlbumController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Album $album)
+    public function update(Request $request, $album_id)
     {
-        //
+        $album = Album::find($album_id);
+        $user = User::where('session_token', $request->session_token)->first();
+
+        if ($user) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'max:255',
+                'place' => 'max:255',
+                'cover_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
+            ]);
+            if ($user) {
+                if ($validator->fails()) {
+                    return response()->json([
+                        'status' => false,
+                        'text' => 'Erreur, Verifies les champs.',
+                        'error' => $validator->errors()
+                    ]);
+                } else {
+                    File::delete($album->cover_path);
+                    $filename = str::random(40). '.'.$request->cover_path->getClientOriginalExtension();
+                    $request->cover_path->move('documents/covers/', $filename);
+                    $album->name = $request->name;
+                    $album->place = $request->place;
+                    $album->cover_path = '/documents/covers/'. $filename;
+                    $album->save();
+        
+                    return response()->json([
+                        'status' => true,
+                        'text' => 'Album ajouté avec succès.'
+                    ]);
+                }
+    
+            }
+        }
     }
 
     /**

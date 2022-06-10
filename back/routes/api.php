@@ -37,5 +37,5 @@ Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/contact/{token}', [ContactController::class, 'index']);
 Route::post('/album/delete/{album_id}', [AlbumController::class, 'destroy']);
 Route::get('/album/edit/{album_id}', [AlbumController::class, 'show']);
-Route::put('/album/edit/{album_id}', [AlbumController::class, 'update']);
+Route::patch('/album/edit/{album_id}', [AlbumController::class, 'update']);
 Route::post('/album/create', [AlbumController::class, 'store']);
