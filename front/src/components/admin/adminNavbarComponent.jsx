@@ -20,7 +20,7 @@ const AdminNavbar = () => {
                 </label>
                 <img className='logo' src={logo} alt="logo" />
                 <ul>
-                    <li><Link onClick={() => setChecked(false)} to='/ns-nimda/dashboard'>Accueil</Link></li>
+                    <li><Link onClick={() => setChecked(false)} to='/ns-nimda/dashboard'>Dashboard</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/ns-nimda/albums'>Albums</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/ns-nimda/tarifs'>Tarifs</Link></li>
                     <Link to="/ns-nimda/login" onClick={() => logOut()} className='yellowbutton'>Deconnexion</Link>

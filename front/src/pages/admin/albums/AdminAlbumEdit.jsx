@@ -51,10 +51,6 @@ const AdminAlbumEdit = () => {
             <>
                 {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="d-flex">
-                        <img id="old-image" style={{margin: '0.5rem'}} src={`${process.env.REACT_APP_IMAGE}`+ album.cover_path} alt={album.name} width="120px"/>
-                        <label htmlFor="old-image" style={{color: 'white'}}>Ancienne Cover :</label>
-                    </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
                         <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Voyage"/>
