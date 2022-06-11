@@ -16,9 +16,7 @@ const AdminAlbums = () => {
     }, [])
 
     const HandleSubmit = (albumid) => {
-        console.log(albumid);
         ServiceAlbum.DeleteAlbum(albumid).then(() => {
-            console.log(albumid);
             setAlbums(albums.filter(album => album.id !== albumid));
         })
     }

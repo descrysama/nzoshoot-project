@@ -91,7 +91,7 @@ class AlbumController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'max:255',
                 'place' => 'max:255',
-                'cover_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
+                'cover_path' => 'mimes:jpeg,png,jpg,gif,svg'
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -101,17 +101,25 @@ class AlbumController extends Controller
                 ]);
             } else {
                 $album = Album::find($request->album_id);
+                $filename = str::random(40). '.'.$request->cover_path->getClientOriginalExtension();
+                $request->cover_path->move('documents/covers/', $filename);
                 File::delete('.'.$album->cover_path);
                 Album::where('id', $request->album_id)->update([
                     'name' => $request->name,
                     'place' => $request->place,
-                    'cover_path' => $request->cover_path
+                    'cover_path' => '/documents/covers/'. $filename
                 ]);
                 return response()->json([
-                    'album' => $album
+                    'status' => true,
+                    'text' => 'Album modifié avec succès.',
+                    'error' => $validator->errors()
                 ]);
             }
         }
+
+        return response()->json([
+            'infos' => $request->all()
+        ]);
     }
 
     /**

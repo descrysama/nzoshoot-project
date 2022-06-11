@@ -15,8 +15,10 @@ const AdminAlbumCreate = () => {
         e.preventDefault();
         ServiceAlbum.createAlbum(name, place, cover[0]).then(res => {
             setError(res.data);
-            console.log(res)
         })
+        setPlace('');
+        setCover('');
+        setName('');
     }
 
     return(

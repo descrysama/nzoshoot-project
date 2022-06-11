@@ -10,19 +10,18 @@ const AdminAlbumEdit = () => {
     const [album, setAlbum] = useState([]);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
-    
+    const [error, setError] = useState();
 
     // valeurs à POST après l'execution de la page
 
     const [name, setName] = useState('');
     const [place, setPlace] = useState('');
-    const [cover, setCover] = useState();
+    const [cover, setCover] = useState('');
     //
 
     let location = useLocation();
     let url = location.pathname.split('/');
-    const [error, setError] = useState(false);
-
+    
     useEffect(() => {
         ServiceAlbum.fetchAlbum(url[url.length - 1]).then(res => {
             setAlbum(res.data);
@@ -38,7 +37,7 @@ const AdminAlbumEdit = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         ServiceAlbum.updateAlbum(url[url.length - 1], name, place, cover).then(res => {
-            console.log(res)
+            setError(res.data);
         })
     }
     
@@ -49,22 +48,28 @@ const AdminAlbumEdit = () => {
             {loading ? 
                 <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
             :
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <img style={{margin: '0.5rem'}} src={`${process.env.REACT_APP_IMAGE}`+ album.cover_path} alt={album.name} width="120px"/>
-                <div className="form-group mb-2">
-                    <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
-                    <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Voyage"/>
-                </div>
-                <div className="form-group mb-2">
-                    <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
-                    <input className="form-input" name="place" type="text"  value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Voyage"/>
-                </div>
-                <div className="form-group mb-2">
-                    <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
-                    <input className="form-input" name="cover_path" type="file" onChange={(e) => setCover(e.target.files[0])} />
-                </div>
-                <input className="yellowbutton" type="submit" value='Envoyer'/>
-            </form>
+            <>
+                {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <div className="d-flex">
+                        <img id="old-image" style={{margin: '0.5rem'}} src={`${process.env.REACT_APP_IMAGE}`+ album.cover_path} alt={album.name} width="120px"/>
+                        <label htmlFor="old-image" style={{color: 'white'}}>Ancienne Cover :</label>
+                    </div>
+                    <div className="form-group mb-2">
+                        <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
+                        <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Voyage"/>
+                    </div>
+                    <div className="form-group mb-2">
+                        <label className="form-label" htmlFor="name">Lieu <span style={{color: 'red'}}>*</span> : </label>
+                        <input className="form-input" name="place" type="text"  value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Voyage"/>
+                    </div>
+                    <div className="form-group mb-2">
+                        <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
+                        <input className="form-input" name="cover_path" type="file" onChange={(e) => setCover(e.target.files[0])} />
+                    </div>
+                    <input className="yellowbutton" type="submit" value='Envoyer'/>
+                </form>
+            </>
             }
             <Link to="/ns-nimda/albums"><i className="fa-solid fa-arrow-left-long white-icon fa-lg"></i> Retour</Link>
         </div>
