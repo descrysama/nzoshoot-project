@@ -45,7 +45,7 @@ export const fetchAlbum = async(albumid) => {
 
 export const updateAlbum = async(albumid, nameValue, placeValue, coverValue) => {
     let token = localStorage.getItem('session_token');
-    let response = await axios.patch(`${process.env.REACT_APP_API}/album/edit/${albumid}`, {
+    let response = await axios.put(`${process.env.REACT_APP_API}/album/edit/${albumid}`, {
         name: nameValue,
         place: placeValue,
         cover_path: coverValue,
@@ -53,6 +53,8 @@ export const updateAlbum = async(albumid, nameValue, placeValue, coverValue) => 
     }, {
         headers: {
             "Content-type": "multipart/form-data",
+            'Authorization': 'Basic xxxxxxxxxxxxxxxxxxx',
+            'Content-Type' : 'text/plain' 
         }
     });
     return response;

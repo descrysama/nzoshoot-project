@@ -37,7 +37,7 @@ const AdminAlbumEdit = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        ServiceAlbum.updateAlbum(url[url.length - 1], name, place, cover[0]).then(res => {
+        ServiceAlbum.updateAlbum(url[url.length - 1], name, place, cover).then(res => {
             console.log(res)
         })
     }
@@ -61,7 +61,7 @@ const AdminAlbumEdit = () => {
                 </div>
                 <div className="form-group mb-2">
                     <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
-                    <input className="form-input" name="cover_path" type="file" onChange={(e) => setCover(e.target.files)} />
+                    <input className="form-input" name="cover_path" type="file" onChange={(e) => setCover(e.target.files[0])} />
                 </div>
                 <input className="yellowbutton" type="submit" value='Envoyer'/>
             </form>

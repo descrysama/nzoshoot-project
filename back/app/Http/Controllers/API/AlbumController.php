@@ -8,7 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class AlbumController extends Controller
 {
@@ -82,9 +83,8 @@ class AlbumController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $album_id)
+    public function update(Request $request)
     {
-        $album = Album::find($album_id);
         $user = User::where('session_token', $request->session_token)->first();
 
         if ($user) {
@@ -93,28 +93,23 @@ class AlbumController extends Controller
                 'place' => 'max:255',
                 'cover_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
             ]);
-            if ($user) {
-                if ($validator->fails()) {
-                    return response()->json([
-                        'status' => false,
-                        'text' => 'Erreur, Verifies les champs.',
-                        'error' => $validator->errors()
-                    ]);
-                } else {
-                    File::delete($album->cover_path);
-                    $filename = str::random(40). '.'.$request->cover_path->getClientOriginalExtension();
-                    $request->cover_path->move('documents/covers/', $filename);
-                    $album->name = $request->name;
-                    $album->place = $request->place;
-                    $album->cover_path = '/documents/covers/'. $filename;
-                    $album->save();
-        
-                    return response()->json([
-                        'status' => true,
-                        'text' => 'Album ajouté avec succès.'
-                    ]);
-                }
-    
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'text' => 'Erreur, Verifies les champs.',
+                    'error' => $validator->errors()
+                ]);
+            } else {
+                $album = Album::find($request->album_id);
+                File::delete('.'.$album->cover_path);
+                Album::where('id', $request->album_id)->update([
+                    'name' => $request->name,
+                    'place' => $request->place,
+                    'cover_path' => $request->cover_path
+                ]);
+                return response()->json([
+                    'album' => $album
+                ]);
             }
         }
     }
@@ -125,12 +120,13 @@ class AlbumController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function destroy($albumid, Request $request)
+    public function destroy(Request $request)
     {
         $user = User::where('session_token', $request->session_token)->first();
         
         if($user) {
-            $album = Album::where('id', $albumid)->first();
+            $album = Album::where('id', $request->album_id)->first();
+            File::delete('.'.$album->cover_path);
             $album->delete();
             return response()->json(['status' => true]);
         } else {
