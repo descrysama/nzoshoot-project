@@ -10,12 +10,15 @@ const AdminAlbumCreate = () => {
     const [cover, setCover] = useState('');
     const [error, setError] = useState();
 
+    const [request, setRequest] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         ServiceAlbum.createAlbum(name, place, cover[0]).then(res => {
             setError(res.data);
+            setRequest(false);
         })
+        setRequest(true);
         setPlace('');
         setCover('');
         setName('');
@@ -27,6 +30,7 @@ const AdminAlbumCreate = () => {
             <div className="d-flex flex-direction-column align-items-center animate__animated animate__fadeIn">
                 <h3 className="m-2" style={{color: 'white'}}>Ajouter un album :</h3>
                 {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
+                {request == false ? null : <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>}
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>

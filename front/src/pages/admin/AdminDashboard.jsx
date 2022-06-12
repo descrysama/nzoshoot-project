@@ -2,23 +2,15 @@ import AdminNavbar from "../../components/admin/adminNavbarComponent";
 import * as ServiceAlbum from "../../services/ServiceAlbum";
 import * as ServiceContact from "../../services/ServiceContact";
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
 
-    const [albums, setAlbums] = useState([]);
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    
     useEffect(() => {
         const RequestFunction = async() => {
-            await ServiceAlbum.FetchAllAlbums().then(res => {
-                setAlbums(res)
-            });
             await ServiceContact.FetchAllMessages().then(res => {
                 setContacts(res)
             });
@@ -26,6 +18,12 @@ const AdminDashboard = () => {
         }
         RequestFunction();
     }, [])
+
+    const RemoveHandler = (contactid) => {
+        ServiceContact.DeleteMessage(contactid).then(() => {
+            setContacts(contacts.filter(contact => contact.id !== contactid));
+        })
+    }
 
     return(
         <>
@@ -35,14 +33,7 @@ const AdminDashboard = () => {
                     <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
                 :
                 <>
-                    <div className="d-flex justify-content-center align-items-center container">
-                        <div className="admin-card m-2">
-                            <h5>{albums.length < 2 ? 'Album : ' : 'Albums : '}{albums.length}</h5>
-                        </div>
-                        <div className="admin-card m-2">
-                            <h5>Messages Clients : {contacts.length}</h5>
-                        </div>
-                    </div>
+                    <h3 className="m-2" style={{color: 'white'}}>Bienvenue dans votre espace de gestion de contenu !</h3>
                     <div className="d-flex justify-content-center align-items-center">
                         <table>
                             <thead>
@@ -51,20 +42,20 @@ const AdminDashboard = () => {
                                     <td>Email</td>
                                     <td>Téléphone</td>
                                     <td>Message</td>
-                                    <td>Action</td>
+                                    <td>Détails</td>
+                                    <td>Supprimer</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                {contacts.map(contact => (
-                                    <>
-                                        <tr>
-                                            <td>{contact.name ? contact.name : '-'}</td>
-                                            <td>{contact.email ? contact.email : '-'}</td>
-                                            <td>{contact.phone_number ? contact.phone_number : '-'}</td>
-                                            <td className="text-overflow">{contact.message ? contact.message : '-'}</td>
-                                            <td><li className="yellowbutton"><i class="fa-solid fa-folder-open"></i></li></td>
-                                        </tr>
-                                    </>
+                                {contacts.map((contact, key) => (
+                                    <tr key={key}>
+                                        <td>{contact.name ? contact.name : '-'}</td>
+                                        <td>{contact.email ? contact.email : '-'}</td>
+                                        <td>{contact.phone_number ? contact.phone_number : '-'}</td>
+                                        <td className="text-overflow">{contact.message ? contact.message : '-'}</td>
+                                        <td><Link to="/ns-nimda/contact" state={{contact: contact}} className="yellowbutton"><i className="fa-solid fa-eye"></i> Detail</Link></td>
+                                        <td><li onClick={() => RemoveHandler(contact.id)} className="yellowbutton"><i className="fa-solid fa-trash"></i></li></td>
+                                    </tr>
                                 ))}
                             </tbody>
                         </table>

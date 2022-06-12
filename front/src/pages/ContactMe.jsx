@@ -51,19 +51,19 @@ const ContactMe = () => {
             {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-group m-2">
-                    <label className="form-label" htmlFor="name">NOM Prenom <span style={{color: 'rgb(255, 255, 0)'}}>(pas obligatoire) :</span></label>
+                    <label className="form-label" htmlFor="name">NOM Prenom :</label>
                     <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Nzo Shoot"/>
                 </div>
                 <div className="form-group m-2">
-                    <label className="form-label" htmlFor="email">Adresse Email :</label>
+                    <label className="form-label" htmlFor="email">Adresse Email <span style={{color: 'red'}}>*</span> :</label>
                     <input className="form-input" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nzoshoot@gmail.com"/>
                 </div>
                 <div className="form-group m-2">
-                    <label className="form-label" htmlFor="name">Numero de téléphone <span style={{color: 'rgb(255, 255, 0)'}}>(pas obligatoire) :</span></label>
+                    <label className="form-label" htmlFor="name">Numero de téléphone :</label>
                     <input className="form-input" name="phone_number" type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="06.06.06.06.06"/>
                 </div>
                 <div className="form-group m-2">
-                    <label className="form-label" htmlFor="email">Message :</label>
+                    <label className="form-label" htmlFor="email">Message <span style={{color: 'red'}}>*</span> :</label>
                     <textarea className="form-textarea" name="message" value={message} onChange={(e) => setMessage(e.target.value)} id="message" cols="30" rows="10" placeholder="Une demande personnalisée sympathique..."></textarea>
                 </div>
                 <input className="yellowbutton" type="submit" value='Envoyer'/>

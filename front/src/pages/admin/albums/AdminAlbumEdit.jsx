@@ -10,6 +10,7 @@ const AdminAlbumEdit = () => {
     const [album, setAlbum] = useState([]);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [request, setRequest] = useState(false);
     const [error, setError] = useState();
 
     // valeurs à POST après l'execution de la page
@@ -38,7 +39,9 @@ const AdminAlbumEdit = () => {
         e.preventDefault();
         ServiceAlbum.updateAlbum(url[url.length - 1], name, place, cover).then(res => {
             setError(res.data);
+            setRequest(false);
         })
+        setRequest(true);
     }
     
     return(
@@ -50,6 +53,7 @@ const AdminAlbumEdit = () => {
             :
             <>
                 {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
+                {request == false ? null : <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>}
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>

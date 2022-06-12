@@ -16,7 +16,8 @@ class ContactController extends Controller
     {
         $user = User::where('session_token', $token)->first();
         if ($user) {
-            return response()->json(Contact::all());
+            $contacts = Contact::all();
+            return response()->json($contacts);
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -47,6 +48,15 @@ class ContactController extends Controller
             return response()->json([
                 'status' => true
             ], 201);
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        $user = User::where('session_token', $request->session_token)->first();
+        $contact = Contact::find($request->contact_id);
+        if ($user) {
+            $contact->delete();
         }
     }
 }

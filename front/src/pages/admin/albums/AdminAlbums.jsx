@@ -15,7 +15,7 @@ const AdminAlbums = () => {
         });
     }, [])
 
-    const HandleSubmit = (albumid) => {
+    const RemoveHandler = (albumid) => {
         ServiceAlbum.DeleteAlbum(albumid).then(() => {
             setAlbums(albums.filter(album => album.id !== albumid));
         })
@@ -30,13 +30,16 @@ const AdminAlbums = () => {
                     <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
                 :
                 <>
+                    <div className="admin-card m-2">
+                        <h5>{albums.length < 2 ? 'Album : ' : 'Albums : '}{albums.length}</h5>
+                    </div>
                     <Link to="create" className="yellowbutton"><i className="fa-solid fa-folder-plus"></i></Link>
                     {albums.map((item, key) => (
                         <div className="d-flex admin-album-card align-items-center" key={key} style={{margin: "10px"}}>
                             <img style={{margin: '0.5rem'}} src={`${process.env.REACT_APP_IMAGE}`+ item.cover_path} alt={item.name} width="120px"/>
                             <p className="album-info" style={{margin: '0.5rem'}}>{item.name}, {item.place}</p>
                             <ul>
-                                <li onClick={() => HandleSubmit(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
+                                <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
                                 <Link to={`${item.id}`} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
                             </ul>
                         </div>
