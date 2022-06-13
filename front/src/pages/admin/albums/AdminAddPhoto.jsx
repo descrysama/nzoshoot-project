@@ -9,6 +9,7 @@ const AdminAddPhoto = () => {
 
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [RemoveAnimation, setRemoveAnimation] = useState(false);
     const location = useLocation();
     const { id } = location.state;
 
@@ -19,8 +20,12 @@ const AdminAddPhoto = () => {
         });
     }, [])
 
-    const RemoveHandler = (albumid) => {
-        
+    const RemoveHandler = (imageid) => {
+        ServiceAlbum.DeleteImage(imageid).then(() => {
+            setImages(images.filter(image => image.id !== imageid));
+            setRemoveAnimation(false);
+        })
+        setRemoveAnimation(imageid);
     }
 
     return(
@@ -38,7 +43,7 @@ const AdminAddPhoto = () => {
                     :
                     <>
                         {images.map((item, key) => (
-                            <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center album-card col-lg" style={{margin: "10px", textAlign: 'center', width: '8em'}}>
+                            <div key={key} className={RemoveAnimation == item.id ? "animate__bounceOut" : null} style={{margin: "10px", textAlign: 'center', width: '8em'}}>
                                 <img src={`${process.env.REACT_APP_IMAGE}/`+ item.image_path} alt={item.description} width="80%"/>
                                 <p className="album-info" style={{margin: "2px"}}>{item.description}</p>
                                 <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>

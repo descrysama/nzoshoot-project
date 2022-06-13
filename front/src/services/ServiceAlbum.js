@@ -22,6 +22,15 @@ export const DeleteAlbum = async(albumid) => {
     return response;
 }
 
+export const DeleteImage = async(imageid) => {
+    let token = localStorage.getItem('session_token');
+    let response = await axios.post(`${process.env.REACT_APP_API}/image/delete/${imageid}`, {
+        session_token: token
+    })
+
+    return response;
+}
+
 export const createAlbum = async(nameValue, placeValue, coverValue) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/album/create`, {
