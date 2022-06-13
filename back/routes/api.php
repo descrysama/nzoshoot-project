@@ -41,3 +41,4 @@ Route::post('/image/delete/{image_id}', [ImageController::class, 'destroy']); //
 Route::get('/album/edit/{album_id}', [AlbumController::class, 'show']); // Retourne les données de l'album pour l'afficher dans la page d'edit
 Route::post('/album/edit/{album_id}', [AlbumController::class, 'update']); // update album
 Route::post('/album/create', [AlbumController::class, 'store']);
+Route::post('/image/create', [ImageController::class, 'store']);

@@ -46,6 +46,19 @@ export const createAlbum = async(nameValue, placeValue, coverValue) => {
     return response;
 }
 
+export const addImages = async(images) => {
+    let token = localStorage.getItem('session_token');
+    let response = await axios.post(`${process.env.REACT_APP_API}/image/create`, {
+        images: images,
+        session_token: token
+    },{
+        headers: {
+            "Content-type": "multipart/form-data",
+        }
+    })
+    return response;
+}
+
 export const fetchAlbum = async(albumid) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.get(`${process.env.REACT_APP_API}/album/edit/${albumid}`);

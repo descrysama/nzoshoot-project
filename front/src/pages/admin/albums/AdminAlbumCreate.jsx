@@ -7,7 +7,7 @@ const AdminAlbumCreate = () => {
 
     const [name, setName] = useState('');
     const [place, setPlace] = useState('');
-    const [cover, setCover] = useState('');
+    const [cover, setCover] = useState([]);
     const [error, setError] = useState();
 
     const [request, setRequest] = useState(false);
