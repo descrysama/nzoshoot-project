@@ -214,7 +214,6 @@ p {
 }
 
 #home-section{
-    background: url(./assets/images_content/mixo.png);
     background-size: cover;
     height: calc(100vh - 80px);
     width: 80%;
@@ -262,7 +261,7 @@ h3 {
 
 
 .right-content {
-    background: url(./assets/images_content/nzoshoot.png);
+    background: url(./assets/images_content/DSC6400-2.png);
     background-size: cover;
     display: flex;
     justify-content: center;

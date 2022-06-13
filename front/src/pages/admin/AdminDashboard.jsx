@@ -8,6 +8,7 @@ const AdminDashboard = () => {
 
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [removeAnimation, setRemoveAnimation] = useState(false);
 
     useEffect(() => {
         const RequestFunction = async() => {
@@ -22,7 +23,9 @@ const AdminDashboard = () => {
     const RemoveHandler = (contactid) => {
         ServiceContact.DeleteMessage(contactid).then(() => {
             setContacts(contacts.filter(contact => contact.id !== contactid));
+            setRemoveAnimation(false);
         })
+        setRemoveAnimation(contactid);
     }
 
     return(
@@ -48,12 +51,12 @@ const AdminDashboard = () => {
                             </thead>
                             <tbody>
                                 {contacts.map((contact, key) => (
-                                    <tr key={key}>
+                                    <tr key={key} className={removeAnimation == contact.id ? "animate__bounceOut" : null}>
                                         <td>{contact.name ? contact.name : '-'}</td>
                                         <td>{contact.email ? contact.email : '-'}</td>
                                         <td>{contact.phone_number ? contact.phone_number : '-'}</td>
                                         <td className="text-overflow">{contact.message ? contact.message : '-'}</td>
-                                        <td><Link to="/ns-nimda/contact" state={{contact: contact}} className="yellowbutton"><i className="fa-solid fa-eye"></i> Detail</Link></td>
+                                        <td><Link to="/ns-nimda/contact" state={{SingleContact: contact}} className="yellowbutton"><i className="fa-solid fa-eye"></i> Detail</Link></td>
                                         <td><li onClick={() => RemoveHandler(contact.id)} className="yellowbutton"><i className="fa-solid fa-trash"></i></li></td>
                                     </tr>
                                 ))}
