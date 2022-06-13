@@ -7,8 +7,8 @@ export const FetchAllAlbums = async() => {
     
 }
 
-export const FetchAllImages = async(albumurl) => {
-    let response = await fetch(`${process.env.REACT_APP_API}` + albumurl);
+export const FetchAllImages = async(albumid) => {
+    let response = await fetch(`${process.env.REACT_APP_API}/album/` + albumid);
     let data = await response.json();
     return data;
 }

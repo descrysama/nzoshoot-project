@@ -27,7 +27,7 @@ const Galerie = () => {
             :
             albums.map((item, key) => (
                 <div key={key} className="album-card col-lg" style={{margin: "10px"}}>
-                    <Link to={"/album/" + item.id}><img src={`${process.env.REACT_APP_IMAGE}`+ item.cover_path} alt={item.name} width="300px"/></Link>
+                    <Link to={"/album/" + item.id} state={{id: item.id}}><img src={`${process.env.REACT_APP_IMAGE}`+ item.cover_path} alt={item.name} width="300px"/></Link>
                     <p className="album-info">{item.name}, {item.place}</p>
                 </div>
             ))

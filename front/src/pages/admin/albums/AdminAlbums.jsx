@@ -41,6 +41,7 @@ const AdminAlbums = () => {
                             <ul>
                                 <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
                                 <Link to={`${item.id}`} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
+                                <Link to={`add/${item.id}`} state={{id: item.id}} className="yellowbutton"><i className="fa-solid fa-plus"></i></Link>
                             </ul>
                         </div>
                     ))}

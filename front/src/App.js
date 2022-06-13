@@ -17,6 +17,7 @@ import AdminAlbumsCreate from './pages/admin/albums/AdminAlbumCreate';
 import AdminAlbumEdit from './pages/admin/albums/AdminAlbumEdit';
 import AdminTarifs from './pages/admin/Tarifs/AdminTarifs';
 import ContactDetail from './pages/admin/Contacts/ContactsDetail';
+import AdminAddPhoto from './pages/admin/albums/AdminAddPhoto';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/ns-nimda/albums' element={<ProtectedRoute><AdminAlbums/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/albums/create' element={<ProtectedRoute><AdminAlbumsCreate/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/albums/:albumid' element={<ProtectedRoute><AdminAlbumEdit/></ProtectedRoute>}></Route>
+          <Route path='/ns-nimda/albums/add/:id' element={<ProtectedRoute><AdminAddPhoto/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/tarifs' element={<ProtectedRoute><AdminTarifs/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/contact/' element={<ProtectedRoute><ContactDetail/></ProtectedRoute>}></Route>
 

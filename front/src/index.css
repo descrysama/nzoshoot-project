@@ -273,6 +273,14 @@ h3 {
     #social-links {
         display: none;
     }
+    
+    .admin-album-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }
 
 @media (max-width: 1235px) {
@@ -497,6 +505,7 @@ table {
     table-layout: fixed;
     border-collapse: collapse;
     width: 100%;
+    overflow-x: auto;
     color: white;
 }
 
