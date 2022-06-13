@@ -42,13 +42,15 @@ const AdminAddPhoto = () => {
                         <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
                     :
                     <>
-                        {images.map((item, key) => (
+                        {images.length > 0 ?
+                        images.map((item, key) => (
                             <div key={key} className={RemoveAnimation == item.id ? "animate__bounceOut" : null} style={{margin: "10px", textAlign: 'center', width: '8em'}}>
                                 <img src={`${process.env.REACT_APP_IMAGE}/`+ item.image_path} alt={item.description} width="80%"/>
                                 <p className="album-info" style={{margin: "2px"}}>{item.description}</p>
                                 <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
                             </div>
-                        ))}
+                        )):
+                        <h3 className="m-2" style={{color: 'white'}}>Aucune image...</h3>}
                         
                     </>}
                     
