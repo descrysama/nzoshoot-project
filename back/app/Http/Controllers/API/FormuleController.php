@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Formule;
 use Illuminate\Http\Request;
 
@@ -59,8 +60,16 @@ class FormuleController extends Controller
      * @param  \App\Models\Formule  $formule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Formule $formule)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::where('session_token', $request->session_token)->first();
+        
+        if($user) {
+            $formule = Formule::where('id', $request->tarif_id)->first();
+            $formule->delete();
+            return response()->json(['status' => true]);
+        } else {
+            return response()->json(['status' => false]);
+        }
     }
 }
