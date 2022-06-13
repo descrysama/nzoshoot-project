@@ -33,24 +33,23 @@ class ImageController extends Controller
     {
         $user = User::where('session_token', $request->session_token)->first();
         if ($user) {
-            foreach(array($request->image_path) as $image) {
-                $validator = Validator::make($image, [
-                    'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            $validator = Validator::make($request->all( ), [
+                'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'text' => 'Erreur, Verifies les champs.',
+                    'error' => $validator->errors()
                 ]);
-                if ($validator->fails()) {
-                    return response()->json([
-                        'status' => false,
-                        'text' => 'Erreur, Verifies les champs.',
-                        'error' => $validator->errors()
-                    ]);
-                } else {
-                    $filename = str::random(40). '.'.$image->getClientOriginalExtension();
-                    $image->move('documents/images/', $filename);
+            } else {
+                $filename = str::random(40). '.'.$request->image_path->getClientOriginalExtension();
+                $request->image_path->move('documents/images/', $filename);
 
-                    $image = new Image();
-                    $image->image_path = '/documents/images/'. $filename;
-                    $image->save();
-                }
+                $image = new Image();
+                $image->image_path = '/documents/images/'. $filename;
+                $image->album_id = $request->album_id;
+                $image->save();
             }
         }
     }

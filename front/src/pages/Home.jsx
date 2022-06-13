@@ -13,7 +13,7 @@ const Home = () => {
         <Navbar />
         <div className="d-flex flex-direction-column align-items-center">
             <section className='d-flex' id='home-section'>
-                <div className="w-50 left-content flex-direction-column animate__animated animate__fadeIn" id='left-content'>
+                <div className="w-50 left-content flex-direction-column animate__animated animate__fadeInLeft" id='left-content'>
                     <img src={logo} alt="logo nzoshoot" style={{margin: "30px"}}/>
                     <h2>NZOSHOOT</h2>
                     <h3>Photographe passionné</h3>
@@ -25,7 +25,7 @@ const Home = () => {
                         <a  className="social-links" href='https://www.facebook.com/NzoShoot-111207490246730'><i className="fa-brands fa-facebook-f fa-sm white-icon m-2"></i></a>
                     </ul>
                 </div>
-                <div className="w-50 right-content animate__animated animate__fadeIn" id='right-content'></div>
+                <div className="w-50 right-content animate__animated animate__fadeInRight" id='right-content'></div>
             </section>
             <section className='d-flex justify-content-center' id="about-section">
                 <div id="about-section-1" style={{width: '80%'}} className='d-flex align-items-center justify-content-center'>

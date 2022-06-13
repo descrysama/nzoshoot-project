@@ -46,10 +46,11 @@ export const createAlbum = async(nameValue, placeValue, coverValue) => {
     return response;
 }
 
-export const addImages = async(images) => {
+export const addImages = async(images, albumid) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/image/create`, {
-        images: images,
+        image_path: images,
+        album_id: albumid,
         session_token: token
     },{
         headers: {

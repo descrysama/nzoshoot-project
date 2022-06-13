@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -134,6 +135,11 @@ class AlbumController extends Controller
         
         if($user) {
             $album = Album::where('id', $request->album_id)->first();
+            $allImages = Image::where('album_id', $request->album_id)->get();
+            foreach($allImages as $image) {
+                File::delete('.'.$image->image_path);
+                $image->delete();
+            }
             File::delete('.'.$album->cover_path);
             $album->delete();
             return response()->json(['status' => true]);
