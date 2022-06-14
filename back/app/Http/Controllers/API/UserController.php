@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:128|unique:users',
             'password' => 'required|min:6'
         ]);
@@ -84,8 +84,31 @@ class UserController extends Controller
                 'status' => true
             ], 201);
         }
+    }
 
-        
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:6',
+            'reset_password_token' => 'required|min:80'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'text' => 'Le mot de passe doit faire plus de 6 caractères.'
+            ]);
+        } else {
+            $user = User::where('reset_password_token', $request->reset_password_token)->first();
+            $user->password = Hash::make($request->password);
+            $user->reset_password_token = '';
+            $user->session_token = '';
+            $user->save();
+            return response()->json([
+                'status' => true,
+                'text' => 'Mot de passe changé avec succès'
+            ]);
+        }
     }
 
     public function checkauth(Request $request)
@@ -121,12 +144,26 @@ class UserController extends Controller
         if ($user) {
             $reset_token = str::random(80);
             $user->reset_password_token = $reset_token;
+            $user->save();
             Mail::to($user->email)->send(new ResetPassword($user));
             return response()->json([
                 'status' => true,
                 'text' => 'Email envoyé'
             ]);
-            
+        }
+    }
+
+    public function checktoken(Request $request)
+    {
+        $user = User::where('reset_password_token', $request->reset_password_token)->first();
+        if ($user){
+            return response()->json([
+                'status' => true
+            ]);
+        } else {
+            return response()->json([
+                'status' => false
+            ]);
         }
     }
 }

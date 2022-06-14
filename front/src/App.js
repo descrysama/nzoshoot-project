@@ -12,6 +12,8 @@ import Error404 from './pages/Error404';
 import ContactMe from './pages/ContactMe';
 import Login from './pages/admin/Login';
 import ResetPassword from './pages/admin/ResetPassword';
+import ResetPassForm from './pages/admin/ResetPassForm';
+import CheckResetToken from './services/middlewares/CheckResetToken';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminAlbums from './pages/admin/albums/AdminAlbums';
 import AdminAlbumsCreate from './pages/admin/albums/AdminAlbumCreate';
@@ -36,6 +38,7 @@ function App() {
           {/* ADMIN ROUTES */}
           <Route path='/ns-nimda/login' element={<ProtectLogin><Login/></ProtectLogin>}></Route>
           <Route path='/ns-nimda/resetpassword' element={<ProtectLogin><ResetPassword/></ProtectLogin>}></Route>
+          <Route path='/ns-nimda/resetpassword/:token' element={<CheckResetToken><ProtectLogin><ResetPassForm/></ProtectLogin></CheckResetToken>}></Route>
           <Route path='/ns-nimda/dashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/albums' element={<ProtectedRoute><AdminAlbums/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/albums/create' element={<ProtectedRoute><AdminAlbumsCreate/></ProtectedRoute>}></Route>

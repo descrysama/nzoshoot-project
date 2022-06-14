@@ -16,3 +16,21 @@ export const ResetPassword = async(emailValue) => {
 
     return response;
 }
+
+
+export const CheckToken = async(token) => {
+    let response = await axios.post(`${process.env.REACT_APP_API}/resetpassword/checktoken`, {
+        reset_password_token: token
+    })
+
+    return response;
+}
+
+export const ChangePassword = async(passwordValue, tokenValue) => {
+    let response = await axios.post(`${process.env.REACT_APP_API}/resetpassword/changepassword`, {
+        password: passwordValue,
+        reset_password_token: tokenValue
+    })
+
+    return response
+}
