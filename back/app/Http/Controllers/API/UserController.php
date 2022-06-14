@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -40,12 +42,16 @@ class UserController extends Controller
                     ]);
                 } else {
                     return response()->json([
-                        'status' => false
+                        'status' => false,
+                        'text' => 'Erreur, Mot de passe incorrect.',
+                        'error' => $validator->errors()
                     ]);
                 }
             } else {
                 return response()->json([
-                    'status' => false
+                    'status' => false,
+                    'text' => 'Erreur, Email incorrect.',
+                    'error' => $validator->errors()
                 ]);
             }
         }
@@ -106,6 +112,21 @@ class UserController extends Controller
                     'message' => 'token invalid'
                 ]);
             }
+        }
+    }
+
+    public function providetoken(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            $reset_token = str::random(80);
+            $user->reset_password_token = $reset_token;
+            Mail::to($user->email)->send(new ResetPassword($user));
+            return response()->json([
+                'status' => true,
+                'text' => 'Email envoyé'
+            ]);
+            
         }
     }
 }

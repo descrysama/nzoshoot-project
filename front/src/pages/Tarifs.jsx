@@ -26,7 +26,7 @@ const Galerie = () => {
             :
             tarifs.map((item, key) => (
                 <div key={key} className="pricing-card col-lg" style={{margin: "10px"}}>
-                    <h3 className="pricing-title" style={{color: 'rgb(255, 255, 0)'}}>{item.name}</h3>
+                    <h3 className="pricing-title" style={{color: 'rgb(255, 255, 0)', margin: "10px"}}>{item.name}</h3>
                     <p className="pricing-attribute">{item.time}</p>
                     <p className="pricing-attribute">{item.description}</p>
                     <p className="pricing-attribute">{item.photos}</p>

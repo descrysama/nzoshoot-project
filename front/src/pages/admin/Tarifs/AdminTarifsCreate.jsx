@@ -11,11 +11,11 @@ const AdminTarifsEdit = () => {
 
 
 
-    const [name, setName] = useState();
-    const [time, setTime] = useState();
-    const [description, setDescription] = useState();
-    const [photos, setPhotos] = useState();
-    const [price, setPrice] = useState();
+    const [name, setName] = useState('');
+    const [time, setTime] = useState('');
+    const [description, setDescription] = useState('');
+    const [photos, setPhotos] = useState('');
+    const [price, setPrice] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();

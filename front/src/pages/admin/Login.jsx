@@ -1,42 +1,23 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import * as ServiceUser from '../../services/ServiceUser';
 import logo from '../../assets/images_content/nzoshoot_logo.png';
 
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState();
+    const [error, setError] = useState('');
     let navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (email && password) {
-            axios.post(`${process.env.REACT_APP_API}/login`, {
-                email: email,
-                password: password
-            }).then(res => {
-                if (res.data.status === true) {
-                    setError({
-                        status: true,
-                        text: 'Connexion réussie, redirection...'
-                    })
-                    localStorage.setItem('session_token', res.data.user.session_token);
-                    navigate('/ns-nimda/dashboard');
-                } else {
-                    setError({
-                        status: false,
-                        text: 'Email et/ou mot depasse incorrect.'
-                    })
-                }
-            })
-        } else {
-            setError({
-                status: false,
-                text: 'Email et/ou mot depasse incorrect.'
-            })
-        }
+        ServiceUser.Login(email, password).then(res => {
+            setError(res.data);
+            localStorage.setItem('session_token', res.data.user.session_token);
+            navigate('/ns-nimda/dashboard');
+        })
     };
 
 
@@ -45,7 +26,7 @@ const Login = () => {
     return(
         <div className="d-flex flex-direction-column align-items-center justify-content-center animate__animated animate__fadeIn p-2" style={{height: '100vh'}}>
             <img src={logo} alt="logo nzshoot" width="120px"/>
-            <h4 style={{color: 'white'}}>Gestion de contenu</h4>
+            <h4 style={{color: 'white'}}>Connexion</h4>
             {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
             <form onSubmit={(e) => handleSubmit(e)} className="d-block align-items-center justify-content-center">
                 
@@ -55,9 +36,12 @@ const Login = () => {
                 </div>
                 <div className="form-group mb-2">
                     <label className="form-label" htmlFor="name">Mot de passe :</label>
-                    <input className="form-input" name="email" type="password"  value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mot de passe"/>
+                    <input className="form-input" name="password" type="password"  value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mot de passe"/>
                 </div>
+                <div className="form-group">
+                <Link style={{ fontSize: '16px', marginBottom: '20px' }} to="/ns-nimda/resetpassword">Mot de passe oublié ?</Link>
                 <input className="yellowbutton" style={{margin: '0px'}} type="submit" value='Envoyer'/>
+                </div>
             </form>
             
         </div>

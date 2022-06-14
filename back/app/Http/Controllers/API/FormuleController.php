@@ -55,7 +55,7 @@ class FormuleController extends Controller
                 ]);
                 return response()->json([
                     'status' => true,
-                    'text' => 'Album modifié avec succès.',
+                    'text' => 'Formule ajoutée avec succès.',
                     'formule' => $formule
                 ]);
             }
@@ -109,7 +109,7 @@ class FormuleController extends Controller
                 ]);
                 return response()->json([
                     'status' => true,
-                    'text' => 'Album modifié avec succès.',
+                    'text' => 'Formule modifiée avec succès.',
                     'formule' => Formule::where('id', $request->formule_id)->first()
                 ]);
             }
