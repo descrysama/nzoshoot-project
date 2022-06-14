@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import './bootstrap.min.css';
 
@@ -43,6 +43,7 @@ function App() {
           <Route path='/ns-nimda/tarifs/edit/:id' element={<ProtectedRoute><AdminTarifsEdit/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/tarifs/create/' element={<ProtectedRoute><AdminTarifsCreate/></ProtectedRoute>}></Route>
           <Route path='/ns-nimda/contact/' element={<ProtectedRoute><ContactDetail/></ProtectedRoute>}></Route>
+          <Route path='/ns-nimda/' element={<Navigate to="/ns-nimda/login" />}></Route>
 
 
           <Route path='*' element={<Error404/>}></Route>

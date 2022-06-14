@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import AdminNavbar from "../../../components/admin/adminNavbarComponent";
 import * as ServiceTarifs from "../../../services/ServiceTarifs";
@@ -11,14 +11,20 @@ const AdminTarifsEdit = () => {
     const { tarif } = useLocation().state;
 
 
+
     const [name, setName] = useState(tarif.name);
-    const [time, setTime] = useState(tarif.time);
-    const [description, setDescription] = useState(tarif.description);
-    const [photos, setPhotos] = useState(tarif.photos);
+    const [time, setTime] = useState(tarif.time ? tarif.time : '');
+    const [description, setDescription] = useState(tarif.description ? tarif.photos : '');
+    const [photos, setPhotos] = useState(tarif.photos ? tarif.photos : '');
     const [price, setPrice] = useState(tarif.plan_price);
 
-    const handleSubmit = () => {
-    
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    ServiceTarifs.UpdateTarif(tarif.id, name, time, description, photos, price).then(res => {
+        setError(res.data.text);
+        setRequest(false);
+    })
+    setRequest(true);
 
     }
     
@@ -27,7 +33,7 @@ const AdminTarifsEdit = () => {
         <AdminNavbar/>
         <div className="d-flex flex-direction-column justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
             <h2 style={{color: 'white'}}>Formule : {tarif.name}</h2>
-                {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
+                {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error}</p> : null}
                 {request == false ? null : <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>}
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="form-group mb-2">

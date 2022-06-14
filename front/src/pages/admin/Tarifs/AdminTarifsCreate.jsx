@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import AdminNavbar from "../../../components/admin/adminNavbarComponent";
 import * as ServiceTarifs from "../../../services/ServiceTarifs";
@@ -17,16 +17,24 @@ const AdminTarifsEdit = () => {
     const [photos, setPhotos] = useState();
     const [price, setPrice] = useState();
 
-    const handleSubmit = () => {
-    
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        ServiceTarifs.CreateTarif(name, time, description, photos, price).then(res => {
+            setError(res.data);
+            setRequest(false);
+            setName('');
+            setTime('');
+            setDescription('');
+            setPhotos('');
+            setPrice('');
+        })
+        setRequest(true);
     }
     
     return(
         <>
         <AdminNavbar/>
         <div className="d-flex flex-direction-column justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
-            <h2 style={{color: 'white'}}>Formule : {tarif.name}</h2>
                 {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
                 {request == false ? null : <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>}
                 <form onSubmit={(e) => handleSubmit(e)}>

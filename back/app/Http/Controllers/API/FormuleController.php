@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Formule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FormuleController extends Controller
 {
@@ -28,7 +29,37 @@ class FormuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::where('session_token', $request->session_token)->first();
+
+        if ($user) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:255',
+                'time' => 'max:255',
+                'description' => 'max:255',
+                'photos' => 'max:255',
+                'plan_price' => 'required|max:255'
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'text' => 'Erreur, Verifies les champs.',
+                    'error' => $validator->errors()
+                ]);
+            } else {
+                $formule = Formule::create([
+                    'name' => $request->name,
+                    'time' => $request->time,
+                    'description' => $request->description,
+                    'photos' => $request->photos,
+                    'plan_price' => $request->plan_price
+                ]);
+                return response()->json([
+                    'status' => true,
+                    'text' => 'Album modifié avec succès.',
+                    'formule' => $formule
+                ]);
+            }
+        }
     }
 
     /**
@@ -49,9 +80,40 @@ class FormuleController extends Controller
      * @param  \App\Models\Formule  $formule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Formule $formule)
+    public function update(Request $request)
     {
-        //
+        $user = User::where('session_token', $request->session_token)->first();
+
+        if ($user) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:255',
+                'time' => 'max:255',
+                'description' => 'max:255',
+                'photos' => 'max:255',
+                'plan_price' => 'required|max:255'
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'text' => 'Erreur, Verifies les champs.',
+                    'error' => $validator->errors()
+                ]);
+            } else {
+                $formule = Formule::where('id', $request->formule_id);
+                $formule->update([
+                    'name' => $request->name,
+                    'time' => $request->time,
+                    'description' => $request->description,
+                    'photos' => $request->photos,
+                    'plan_price' => $request->plan_price
+                ]);
+                return response()->json([
+                    'status' => true,
+                    'text' => 'Album modifié avec succès.',
+                    'formule' => Formule::where('id', $request->formule_id)->first()
+                ]);
+            }
+        }
     }
 
     /**

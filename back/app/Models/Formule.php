@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Formule extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'time',
+        'description',
+        'photos',
+        'plan_price'
+    ];
 }

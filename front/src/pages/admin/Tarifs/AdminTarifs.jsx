@@ -20,7 +20,6 @@ const AdminTarifs = () => {
         
         ServiceTarifs.DeleteTarif(tarifid).then(() => {
             setTarifs(tarifs.filter(tarif => tarif.id !== tarifid));
-            console.log(tarifs)
         })
     }
 
@@ -38,6 +37,7 @@ const AdminTarifs = () => {
                         {tarifs.map((item, key) => (
                             <div className="pricing-card" key={key} style={{margin: "10px"}}>
                                 <h3 style={{color: 'rgb(255, 255, 0)', margin: "0.5em"}}>{item.name}</h3>
+                                <h4 style={{color: 'rgb(255, 255, 0)', margin: "0.5em"}}>{item.plan_price}€</h4>
                                 <ul>
                                     <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
                                     <Link to={`edit/${item.id}`} state={{ tarif: item }} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>

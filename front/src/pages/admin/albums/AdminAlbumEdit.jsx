@@ -29,9 +29,6 @@ const AdminAlbumEdit = () => {
             setName(res.data.name);
             setPlace(res.data.place);
         })
-        // ServiceAlbum.fetchAlbumImages(location.length - 1).then(res => {
-        //     setImages(res.data);
-        // })
         setLoading(false);
     }, []);
 
