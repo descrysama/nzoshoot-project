@@ -368,7 +368,7 @@ h3 {
 }
 
 .pricing-card {
-    max-width: 300px;
+    width: 300px;
     height: 350px;
     border-radius: 10px;
     display: flex;
@@ -479,6 +479,10 @@ input[type='file']::-webkit-file-upload-button:hover {
     form {
         width: 15em;
     }
+
+    .pricing-card {
+        width: 230px;
+    }
 }
 
 @media (max-width: 350px) {
@@ -540,7 +544,6 @@ table {
     table-layout: fixed;
     border-collapse: collapse;
     width: 100%;
-    overflow-x: auto;
     color: white;
 }
 
@@ -552,7 +555,7 @@ table thead {
 
 td {
     height: 56px;
-    padding: 10px;
+    padding: 5px;
     font-size: 16px;
     text-align: center;
 }
@@ -562,11 +565,4 @@ td {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-
-td {
-    height: 36px;
-    font-size: 16px;
 }
-
-

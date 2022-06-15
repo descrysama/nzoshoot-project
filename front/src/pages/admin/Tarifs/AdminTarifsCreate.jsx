@@ -43,15 +43,15 @@ const AdminTarifsEdit = () => {
                         <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Voyage"/>
                     </div>
                     <div className="form-group mb-2">
-                        <label className="form-label" htmlFor="name">Temps passer pour la prestation <span style={{color: 'red'}}>*</span> : </label>
+                        <label className="form-label" htmlFor="name">Temps passer pour la prestation  : </label>
                         <input className="form-input" name="time" type="text"  value={time} onChange={(e) => setTime(e.target.value)} placeholder="Voyage"/>
                     </div>
                     <div className="form-group mb-2">
-                        <label className="form-label" htmlFor="name">Description <span style={{color: 'red'}}>*</span> : </label>
+                        <label className="form-label" htmlFor="name">Description  : </label>
                         <input className="form-input" name="description" type="text"  value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Voyage"/>
                     </div>
                     <div className="form-group mb-2">
-                        <label className="form-label" htmlFor="name">Nombre de photos <span style={{color: 'red'}}>*</span> : </label>
+                        <label className="form-label" htmlFor="name">Nombre de photos  : </label>
                         <input className="form-input" name="photos" type="text"  value={photos} onChange={(e) => setPhotos(e.target.value)} placeholder="Voyage"/>
                     </div>
                     <div className="form-group mb-2">

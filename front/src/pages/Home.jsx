@@ -31,7 +31,7 @@ const Home = ({isAuth}) => {
             <section className='d-flex justify-content-center' id="about-section">
                 <div id="about-section-1" style={{width: '80%'}} className='d-flex align-items-center justify-content-center'>
                     <div className='p-4 d-flex flex-direction-column p-2 w-75'>
-                        <h3 style={{margin: '30px'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> A propos de moi</h3>
+                        <h3 style={{marginBottom: '30px', textAlign: 'left'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> A propos de moi</h3>
                         <p>
                         Photographe polyvalent qui vit pour capturer des moments uniques avec mon style caractéristique. 
                         J'ai commencé mon aventure photographique en 2018 et j'ai rapidement embrassé les éléments fondamentaux qui font une bonne photo : l'éclairage, l'équilibre, la composition et l'utilisation de la perspective.

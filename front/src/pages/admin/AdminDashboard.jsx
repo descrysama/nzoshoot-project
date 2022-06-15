@@ -37,8 +37,8 @@ const AdminDashboard = () => {
                 :
                 <>
                     <h3 className="m-2" style={{color: 'white'}}>Bienvenue dans votre espace de gestion de contenu !</h3>
-                    <div className="d-flex justify-content-center align-items-center">
-                        <table>
+                    <div className="d-flex flex-direction-column justify-content-center align-items-center">
+                        {/* <table>
                             <thead>
                                 <tr>
                                     <td>Nom</td>
@@ -61,7 +61,38 @@ const AdminDashboard = () => {
                                     </tr>
                                 ))}
                             </tbody>
-                        </table>
+                        </table> */}
+                    <form>
+                        <div className="form-group mb-2">
+                            <label className="form-label" htmlFor="slogan">Slogan :</label>
+                            <input className="form-input" name="slogan" type="text" placeholder="Un photographe passionné"/>
+                        </div>
+                        <input type="submit" className="yellowbutton" />
+                    </form>
+
+                    <form>
+                        <div className="form-group mb-2">
+                            <label className="form-label" htmlFor="logo">Text à propos de moi :</label>
+                            <input className="form-input" name="logo" type="text" placeholder="Photographe polyvalent qui vit pour..."/>
+                        </div>
+                        <input type="submit" className="yellowbutton" />
+                    </form>
+
+                    <form>
+                        <div className="form-group mb-2">
+                            <label className="form-label" htmlFor="phone_number">Numero de téléphone :</label>
+                            <input className="form-input" name="phone_number" type="text" placeholder="06.23.30.35.57"/>
+                        </div>
+                        <input type="submit" className="yellowbutton" />
+                    </form>
+
+                    <form>
+                        <div className="form-group mb-2">
+                            <label className="form-label" htmlFor="email">Adresse Email :</label>
+                            <input className="form-input" name="email" type="text" placeholder="nzoshoot@gmail.com"/>
+                        </div>
+                        <input type="submit" className="yellowbutton" />
+                    </form>
                     </div>
                 </>
                 }

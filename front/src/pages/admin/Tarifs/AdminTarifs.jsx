@@ -33,18 +33,18 @@ const AdminTarifs = () => {
                     {loading ? 
                         <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
                     :
-                    <>
+                    <div className="d-flex justify-content-center align-items-center container">
                         {tarifs.map((item, key) => (
-                            <div className="pricing-card" key={key} style={{margin: "10px"}}>
-                                <h3 style={{color: 'rgb(255, 255, 0)', margin: "0.5em"}}>{item.name}</h3>
-                                <h4 style={{color: 'rgb(255, 255, 0)', margin: "0.5em"}}>{item.plan_price}€</h4>
-                                <ul>
-                                    <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
-                                    <Link to={`edit/${item.id}`} state={{ tarif: item }} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
-                                </ul>
-                            </div>
+                                <div className="pricing-card col-lg" key={key} style={{margin: "10px"}}>
+                                    <h3 style={{color: 'rgb(255, 255, 0)', margin: "0.5em"}}>{item.name}</h3>
+                                    <h4 style={{color: 'rgb(255, 255, 0)', margin: "0.5em"}}>{item.plan_price}€</h4>
+                                    <ul>
+                                        <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
+                                        <Link to={`edit/${item.id}`} state={{ tarif: item }} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
+                                    </ul>
+                                </div>
                         ))}
-                    </>
+                    </div>
                     }
                 </div>
             </div>

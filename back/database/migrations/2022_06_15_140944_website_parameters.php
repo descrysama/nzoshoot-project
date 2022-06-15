@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('website_parameters', function (Blueprint $table) {
+            $table->id();
+            $table->string('slogan')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('email')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

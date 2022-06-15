@@ -27,7 +27,7 @@ const Galerie = ({isAuth}) => {
             :
             albums.map((item, key) => (
                 <div key={key} className="album-card col-lg" style={{margin: "10px"}}>
-                    <Link to={"/album/" + item.id} state={{id: item.id}}><div style={{backgroundImage: `url(${process.env.REACT_APP_IMAGE}${item.cover_path})`, minWidth: '300px', minHeight:'300px', backgroundSize: 'cover'}}></div></Link>
+                    <Link to={"/album/" + item.id} state={{id: item.id}}><div style={{backgroundImage: `url(${process.env.REACT_APP_IMAGE}${item.cover_path})`, minWidth: '250px', minHeight:'300px', backgroundSize: 'cover'}}></div></Link>
                     <p className="album-info">{item.name}, {item.place}</p>
                 </div>
             ))
