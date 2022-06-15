@@ -19,7 +19,7 @@ return new class extends Migration
             $table->mediumText('time')->nullable(); // Temps attribué à la prise de vue
             $table->mediumText('description')->nullable(); // Description de la formule
             $table->mediumText('photos')->nullable(); // Nombre de photos
-            $table->string('plan_price')->nullable(); // Prix de la formule
+            $table->string('plan_price'); // Prix de la formule
             $table->timestamps();
         });
     }
