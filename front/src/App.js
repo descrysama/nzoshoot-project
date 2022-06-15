@@ -24,16 +24,29 @@ import AdminTarifsCreate from './pages/admin/Tarifs/AdminTarifsCreate';
 import ContactDetail from './pages/admin/Contacts/ContactsDetail';
 import AdminAddPhoto from './pages/admin/albums/AdminAddPhoto';
 import ProtectLogin from './services/middlewares/ProtectLogin';
+import { useEffect } from 'react';
+import { CheckAuth } from './services/middlewares/CheckAuth';
+import { useState } from 'react';
+
 function App() {
+
+  const[isAuth, setIsAuth] = useState();
+
+  useEffect(() => {
+    CheckAuth().then((res) => {
+      setIsAuth(res.status)
+    })
+  }, [])
+
   return (
       <BrowserRouter>
         <Routes>
           {/* PUBLIC ROUTES */}
-          <Route path='/' element={<Home/>}></Route>
-          <Route path='/galerie' element={<Galerie/>}></Route>
-          <Route path='/tarifs' element={<Tarifs/>}></Route>
-          <Route path='/album/:albumid' element={<AlbumContent/>}></Route>
-          <Route path='/contactez-moi' element={<ContactMe/>}></Route>
+          <Route path='/' element={<Home isAuth={isAuth}/>}></Route>
+          <Route path='/galerie' element={<Galerie isAuth={isAuth}/>}></Route>
+          <Route path='/tarifs' element={<Tarifs isAuth={isAuth}/>}></Route>
+          <Route path='/album/:albumid' element={<AlbumContent isAuth={isAuth}/>}></Route>
+          <Route path='/contactez-moi' element={<ContactMe isAuth={isAuth}/>}></Route>
 
           {/* ADMIN ROUTES */}
           <Route path='/ns-nimda/login' element={<ProtectLogin><Login/></ProtectLogin>}></Route>

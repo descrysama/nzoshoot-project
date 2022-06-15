@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const Galerie = () => {
+const Galerie = ({isAuth}) => {
 
     const [albums, setAlbums] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -19,7 +19,7 @@ const Galerie = () => {
 
     return(
         <>
-        <Navbar />
+        <Navbar isAuth={isAuth}/>
         <div className="d-flex justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
             {loading == false ? <h3 className="m-2" style={{color: 'white'}}>{albums.length > 0 ? null : "Aucun album pour le moment..."}</h3> : null}
             {loading ? 

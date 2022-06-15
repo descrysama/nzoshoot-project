@@ -7,10 +7,11 @@ import Navbar from "../components/navbarComponent";
 import Footer from "../components/footerComponent";
 import 'animate.css';
 
-const Home = () => {
+const Home = ({isAuth}) => {
+    
     return (
         <>
-        <Navbar />
+        <Navbar isAuth={isAuth} />
         <div className="d-flex flex-direction-column align-items-center">
             <section className='d-flex' id='home-section'>
                 <div className="w-50 left-content flex-direction-column animate__animated animate__fadeInLeft" id='left-content'>

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocation, Link } from 'react-router-dom';
 
 
-const AlbumContent = () => {
+const AlbumContent = ({isAuth}) => {
 
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ const AlbumContent = () => {
 
     return(
         <>
-        <Navbar />
+        <Navbar isAuth={isAuth}/>
         <div className="d-flex justify-content-center align-items-center m-2">
             <Link to="/galerie"><i className="fa-solid fa-arrow-left-long white-icon fa-lg"></i> Retour</Link>
         </div>

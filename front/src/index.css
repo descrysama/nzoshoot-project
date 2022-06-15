@@ -82,6 +82,26 @@ a.active, a:hover{
     transition: 1s;
 }
 
+.redbutton {
+    border: 2px solid rgb(255, 51, 0);
+    color: white;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 10px;
+    cursor: pointer;
+    border-radius: 21px;
+    background-color: transparent;
+}
+
+.redbutton:hover {
+    background-color: rgb(255, 51, 0);
+    color: black;
+    transition: 1s;
+}
+
 .d-flex {
     display: flex;
 }

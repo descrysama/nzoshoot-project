@@ -3,7 +3,7 @@ import logo from '../assets/images_content/nzoshoot_logo.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const Navbar = () => {
+const Navbar = ({isAuth}) => {
 
     const [checked, setChecked] = useState(false);
 
@@ -20,6 +20,7 @@ const Navbar = () => {
                     <li><Link onClick={() => setChecked(false)} to='/galerie'>Galerie</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/tarifs'>Tarifs</Link></li>
                     <Link to="/contactez-moi" className='yellowbutton'>Contactez-moi</Link>
+                    {isAuth == true ? <Link to="/ns-nimda/dashboard" className='redbutton'>Admin</Link> : null}
                 </ul>
             </nav>
         </div>

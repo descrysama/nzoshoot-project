@@ -24,6 +24,7 @@ const AdminNavbar = () => {
                     <li><Link onClick={() => setChecked(false)} to='/ns-nimda/albums'>Albums</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/ns-nimda/tarifs'>Tarifs</Link></li>
                     <Link to="/ns-nimda/login" onClick={() => logOut()} className='yellowbutton'>Deconnexion</Link>
+                    <Link to="/" className='redbutton'>Retour au site</Link>
                 </ul>
             </nav>
         </div>

@@ -3,7 +3,7 @@ import Footer from "../components/footerComponent";
 import { useState } from "react";
 import axios from 'axios';
 
-const ContactMe = () => {
+const ContactMe = ({isAuth}) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -45,7 +45,7 @@ const ContactMe = () => {
 
     return(
         <>
-        <Navbar />
+        <Navbar isAuth={isAuth}/>
         <div className="d-flex flex-direction-column align-items-center justify-content-center animate__animated animate__fadeIn p-2" style={{textAlign: 'center'}}>
             <h2 style={{color: 'white'}}>Contactez-moi</h2>
             {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
