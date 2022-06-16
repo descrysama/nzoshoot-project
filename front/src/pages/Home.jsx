@@ -5,9 +5,25 @@ import ldlc from '../assets/images_content/ldlc.png';
 import professionnal from '../assets/images_content/nzoshoot.webp';
 import Navbar from "../components/navbarComponent";
 import Footer from "../components/footerComponent";
+import * as ServiceWebsite from "../services/ServiceWebsite";
 import 'animate.css';
+import { useEffect, useState } from 'react';
 
 const Home = ({isAuth}) => {
+
+    const [slogan, setSlogan] = useState('');
+    const [aboutme, setAboutme] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        ServiceWebsite.FetchParams().then(res => {
+            setSlogan(res.data.params[0].slogan)
+            setAboutme(res.data.params[0].about_me)
+            setPhone(res.data.params[0].phone_number)
+            setEmail(res.data.params[0].email)
+        })
+    }, [])
     
     return (
         <>
@@ -17,7 +33,7 @@ const Home = ({isAuth}) => {
                 <div className="w-50 left-content flex-direction-column animate__animated animate__fadeInLeft" id='left-content'>
                     <img src={logo} alt="logo nzoshoot" style={{margin: "30px"}}/>
                     <h2>NZOSHOOT</h2>
-                    <h3>Photographe passionné</h3>
+                    <h3>{slogan}</h3>
                     <ul id="social-links" className='d-flex justify-content-center align-items-center'>
                         <a  className="social-links" href='https://twitter.com/NzoShoot'><i className="fa-brands fa-twitter fa-sm white-icon m-2"></i></a>
                         <a  className="social-links" href='https://www.tiktok.com/@nzoshoot_'><i className="fa-brands fa-tiktok fa-sm white-icon m-2"></i></a>
@@ -32,12 +48,7 @@ const Home = ({isAuth}) => {
                 <div id="about-section-1" style={{width: '80%'}} className='d-flex align-items-center justify-content-center'>
                     <div className='p-4 d-flex flex-direction-column p-2 w-75'>
                         <h3 style={{marginBottom: '30px', textAlign: 'left'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> A propos de moi</h3>
-                        <p>
-                        Photographe polyvalent qui vit pour capturer des moments uniques avec mon style caractéristique. 
-                        J'ai commencé mon aventure photographique en 2018 et j'ai rapidement embrassé les éléments fondamentaux qui font une bonne photo : l'éclairage, l'équilibre, la composition et l'utilisation de la perspective.
-                        J'aime capturer des moments poignants et profonds avec une touche de créativité. 
-                        Et offre mes services personnalisés exceptionnels à chacun de mes clients, alors prenez contact sans tarder pour réserver votre session.
-                        </p>
+                        <p>{aboutme}</p>
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
                         <img id="img-pro" src={professionnal} alt="nzoshoot professionnel"/>
@@ -53,7 +64,7 @@ const Home = ({isAuth}) => {
                 </div>
             </section>
         </div>
-        <Footer />
+        <Footer email={email} phone={phone}/>
         </>
     )
 }

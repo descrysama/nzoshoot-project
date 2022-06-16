@@ -150,6 +150,11 @@ class UserController extends Controller
                 'status' => true,
                 'text' => 'Email envoyé'
             ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'text' => 'Email non trouvé'
+            ]);
         }
     }
 

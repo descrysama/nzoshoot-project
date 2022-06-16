@@ -1,6 +1,7 @@
 import Navbar from "../components/navbarComponent";
 import Footer from "../components/footerComponent";
 import * as ServiceTarifs from '../services/ServiceTarifs';
+import * as ServiceWebsite from "../services/ServiceWebsite";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,12 +10,19 @@ const Galerie = ({isAuth}) => {
 
     const [tarifs, setTarifs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
         ServiceTarifs.FetchAllPrices().then(res => {
             setTarifs(res)
             setLoading(false)
         });
+        
+        ServiceWebsite.FetchParams().then(res => {
+            setPhone(res.data.params[0].phone_number)
+            setEmail(res.data.params[0].email)
+        })
     }, [])
 
     return(
@@ -39,7 +47,7 @@ const Galerie = ({isAuth}) => {
             </div>
             }
         </div>
-        <Footer />
+        <Footer email={email} phone={phone}/>
         </>
         
     )

@@ -50,4 +50,5 @@ Route::post('/tarif/delete', [FormuleController::class, 'destroy']); // suppress
 Route::post('/tarif/create', [FormuleController::class, 'store']); // création de la formule
 Route::post('/tarif/edit/{formule_id}', [FormuleController::class, 'update']); // update formule
 Route::get('/params', [WebParamsController::class, 'index']);
+Route::post('/params', [WebParamsController::class, 'update']);
 

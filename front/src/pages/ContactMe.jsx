@@ -1,15 +1,25 @@
 import Navbar from "../components/navbarComponent";
 import Footer from "../components/footerComponent";
-import { useState } from "react";
+import * as ServiceWebsite from "../services/ServiceWebsite";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const ContactMe = ({isAuth}) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [emailfooter, setEmailFooter] = useState('');
+    const [phone, setPhone] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState();
+
+    useEffect(() => {
+        ServiceWebsite.FetchParams().then(res => {
+            setPhone(res.data.params[0].phone_number)
+            setEmailFooter(res.data.params[0].email)
+        })
+    }, [])
 
     const ResetValues = () => {
         setName('');
@@ -69,7 +79,7 @@ const ContactMe = ({isAuth}) => {
                 <input className="yellowbutton" type="submit" value='Envoyer'/>
             </form>
         </div>
-        <Footer />
+        <Footer email={emailfooter} phone={phone}/>
         </>
     )
 }
