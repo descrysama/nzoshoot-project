@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AlbumController;
 use App\Http\Controllers\API\FormuleController;
 use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\WebParamsController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,5 @@ Route::post('/image/create', [ImageController::class, 'store']);
 Route::post('/tarif/delete', [FormuleController::class, 'destroy']); // suppression de la formule
 Route::post('/tarif/create', [FormuleController::class, 'store']); // création de la formule
 Route::post('/tarif/edit/{formule_id}', [FormuleController::class, 'update']); // update formule
+Route::get('/params', [WebParamsController::class, 'index']);
 

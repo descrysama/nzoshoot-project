@@ -1,32 +1,29 @@
 import AdminNavbar from "../../components/admin/adminNavbarComponent";
 import * as ServiceAlbum from "../../services/ServiceAlbum";
-import * as ServiceContact from "../../services/ServiceContact";
+import * as ServiceWebsite from "../../services/ServiceWebsite";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
 
-    const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [removeAnimation, setRemoveAnimation] = useState(false);
+    const [slogan, setSlogan] = useState('');
+    const [aboutme, setAboutme] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
         const RequestFunction = async() => {
-            await ServiceContact.FetchAllMessages().then(res => {
-                setContacts(res)
+            await ServiceWebsite.FetchParams().then(res => {
+                setSlogan(res.params[0].slogan)
+                setAboutme(res.params[0].about_me)
+                setPhone(res.params[0].phone_number)
+                setEmail(res.params[0].email)
             });
             setLoading(false)
         }
         RequestFunction();
     }, [])
-
-    const RemoveHandler = (contactid) => {
-        ServiceContact.DeleteMessage(contactid).then(() => {
-            setContacts(contacts.filter(contact => contact.id !== contactid));
-            setRemoveAnimation(false);
-        })
-        setRemoveAnimation(contactid);
-    }
 
     return(
         <>
@@ -65,15 +62,15 @@ const AdminDashboard = () => {
                     <form>
                         <div className="form-group mb-2">
                             <label className="form-label" htmlFor="slogan">Slogan :</label>
-                            <input className="form-input" name="slogan" type="text" placeholder="Un photographe passionné"/>
+                            <input className="form-input" name="slogan" type="text" placeholder="Un photographe passionné" value={slogan} onChange={(e) => setSlogan(e.target.value)}/>
                         </div>
                         <input type="submit" className="yellowbutton" />
                     </form>
 
                     <form>
                         <div className="form-group mb-2">
-                            <label className="form-label" htmlFor="logo">Text à propos de moi :</label>
-                            <input className="form-input" name="logo" type="text" placeholder="Photographe polyvalent qui vit pour..."/>
+                            <label className="form-label" htmlFor="about_me">Text à propos de moi :</label>
+                            <textarea className="form-textarea" name="about_me" id="about_me" cols="30" rows="10" value={aboutme} onChange={(e) => setAboutme(e.target.value)}></textarea>
                         </div>
                         <input type="submit" className="yellowbutton" />
                     </form>
@@ -81,7 +78,7 @@ const AdminDashboard = () => {
                     <form>
                         <div className="form-group mb-2">
                             <label className="form-label" htmlFor="phone_number">Numero de téléphone :</label>
-                            <input className="form-input" name="phone_number" type="text" placeholder="06.23.30.35.57"/>
+                            <input className="form-input" name="phone_number" type="text" placeholder="06.23.30.35.57" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                         </div>
                         <input type="submit" className="yellowbutton" />
                     </form>
@@ -89,7 +86,7 @@ const AdminDashboard = () => {
                     <form>
                         <div className="form-group mb-2">
                             <label className="form-label" htmlFor="email">Adresse Email :</label>
-                            <input className="form-input" name="email" type="text" placeholder="nzoshoot@gmail.com"/>
+                            <input className="form-input" name="email" type="text" placeholder="nzoshoot@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <input type="submit" className="yellowbutton" />
                     </form>
