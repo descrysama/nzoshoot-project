@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('description')->nullable(); // description de l'image
+            $table->string('type'); // type du fichier video/image');
             $table->string('image_path'); // chemin de l'image
             $table->integer('album_id'); // id de l'album
             $table->timestamps();

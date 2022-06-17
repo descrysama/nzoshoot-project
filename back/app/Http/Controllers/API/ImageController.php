@@ -12,29 +12,19 @@ use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index($album_id)
     {
         $images = Image::where('album_id', $album_id)->get();
         return response()->json($images);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $user = User::where('session_token', $request->session_token)->first();
         if ($user) {
             $validator = Validator::make($request->all( ), [
-                'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+                'image_path' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4,ogg,mov'
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -44,45 +34,29 @@ class ImageController extends Controller
                 ]);
             } else {
                 $filename = str::random(40). '.'.$request->image_path->getClientOriginalExtension();
-                $request->image_path->move('documents/images/', $filename);
+                $extension = $request->image_path->getClientOriginalExtension();
+                if($extension == 'mp4' || $extension == 'ogg' || $extension == 'mov') {
+                    $request->image_path->move(public_path('documents/videos'), $filename);
+                    $video = new Image();
+                    $video->image_path = '/documents/videos/'. $filename;
+                    $video->album_id = $request->album_id;
+                    $video->type = 'video';
+                    $video->save();
+                } else {
+                    $request->image_path->move('documents/images/', $filename);
+                    $image = new Image();
+                    $image->image_path = '/documents/images/'. $filename;
+                    $image->album_id = $request->album_id;
+                    $image->type = 'image';
+                    $image->save();
+                }
+                
 
-                $image = new Image();
-                $image->image_path = '/documents/images/'. $filename;
-                $image->album_id = $request->album_id;
-                $image->save();
+                
             }
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Image $image)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         $user = User::where('session_token', $request->session_token)->first();

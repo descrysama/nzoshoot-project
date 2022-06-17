@@ -40,7 +40,13 @@ const AlbumContent = ({isAuth}) => {
                 {images.map((item, key) => (
                 key % 2 == 0 ?
                 <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{marginBottom: "10%", textAlign: 'center'}}>
+                    {item.type == 'image' ? 
                     <img style={{pointerEvents :'none'}} src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} width="80%"/>
+                    :
+                    <video controls width="80%">
+                        <source src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} type="video/mp4" />
+                    </video>
+                    }
                 </div>
                 :
                 null
@@ -50,7 +56,13 @@ const AlbumContent = ({isAuth}) => {
                 {images.map((item, key) => (
                 key % 2 != 0 ?
                 <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{marginBottom: "10%", textAlign: 'center'}}>
+                    {item.type == 'image' ? 
                     <img style={{pointerEvents :'none'}} src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} width="80%"/>
+                    :
+                    <video controls width="80%">
+                        <source src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} type="video/mp4" />
+                    </video>
+                    }
                 </div>
                 :
                 null

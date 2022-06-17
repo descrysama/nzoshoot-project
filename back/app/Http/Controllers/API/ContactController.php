@@ -44,7 +44,6 @@ class ContactController extends Controller
             $contact->phone_number = $request->phone_number;
             $contact->message = $request->message;
             $contact->save();
-            Mail::to('naxaj51871@iconzap.com')->send(new ResetPassword($contact));
             return response()->json([
                 'status' => true
             ], 201);
