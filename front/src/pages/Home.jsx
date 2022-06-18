@@ -57,10 +57,10 @@ const Home = ({isAuth}) => {
             </section>
             <section className='d-flex flex-direction-column justify-content-center align-items-center' id="testimonials-section">
                 <h3 style={{margin: '30px', color: 'white', fontWeight: 'normal'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> Ils m'ont fait confiance</h3>
-                <div style={{width: '80%', height: '300px',margin: '20px'}} className='d-flex justify-content-center align-items-center'>
-                    <img src={puma} style={{width: '20%'}} alt="" />
-                    <img src={ldlc} style={{width: '20%'}} alt="" />
-                    <img src={nestenn} style={{width: '20%'}} alt="" />
+                <div className='d-flex justify-content-center align-items-center brand-ribbon'>
+                    <img src={puma} width="250px" alt="" />
+                    <img src={ldlc} width="250px" alt="" />
+                    <img src={nestenn} width="250px" alt="" />
                 </div>
             </section>
         </div>

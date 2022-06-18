@@ -25,7 +25,7 @@ const Login = () => {
 
     return(
         <div className="d-flex flex-direction-column align-items-center justify-content-center animate__animated animate__fadeIn p-2" style={{height: '100vh'}}>
-            <img src={logo} alt="logo nzshoot" width="120px"/>
+            <Link to='/'><img src={logo} alt="logo nzshoot" width="120px"/></Link>
             <h4 style={{color: 'white'}}>Connexion</h4>
             {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
             <form onSubmit={(e) => handleSubmit(e)} className="d-block align-items-center justify-content-center">

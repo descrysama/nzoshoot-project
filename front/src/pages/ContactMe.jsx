@@ -1,6 +1,7 @@
 import Navbar from "../components/navbarComponent";
 import Footer from "../components/footerComponent";
 import * as ServiceWebsite from "../services/ServiceWebsite";
+import * as ServiceContact from "../services/ServiceContact";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -48,16 +49,9 @@ const ContactMe = ({isAuth}) => {
 
         if (email && message) {
             if (result == captcha.first + captcha.second) {
-                axios.post(`${process.env.REACT_APP_API}/contact`, {
-                name: name,
-                email: email,
-                phone_number: phoneNumber,
-                message: message
+                ServiceContact.SendForm(name, email, phoneNumber, message).then(res => {
+                    setError(res.data)
                 })
-                setError({
-                    status: true,
-                    text: 'Formulaire Envoyé avec succès.'
-                });
                 ResetValues();
             } else {
                 setError({

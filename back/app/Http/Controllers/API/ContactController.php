@@ -37,7 +37,8 @@ class ContactController extends Controller
 
         if($validator->fails()) {
             return response()->json([
-                'status' => false
+                'status' => false,
+                'text' => 'Erreur : Veuillez verifier les champs'
             ]);
         } else {
             $contact = new Contact();
@@ -50,7 +51,8 @@ class ContactController extends Controller
             $contact->save();
 
             return response()->json([
-                'status' => true
+                'status' => true,
+                'text' => 'Formulaire envoyé avec succès'
             ], 201);
         }
     }
