@@ -23,14 +23,14 @@ class WebParamsController extends Controller
         if ($user) {
             $validator = Validator::make($request->all(), [
                 'slogan' => 'max:255',
-                'about_me' => 'max:255',
                 'phone_number' => 'max:255',
                 'email' => 'email'
             ]);
     
             if ($validator->fails()) {
                 return response()->json([
-                    'status' => false
+                    'status' => false,
+                    'text' => 'email, message, ou slogan incorrects. Verifies la longueurs de tes champs et les types de données.',
                 ]);
             } else {
                 $params = Params::find(1);
@@ -39,6 +39,10 @@ class WebParamsController extends Controller
                 $params->phone_number = $request->phone_number;
                 $params->email = $request->email;
                 $params->save();
+                return response()->json([
+                    'status' => true,
+                    'text' => 'Paramètres mis à jour avec succès.',
+                ]);
             }
         }
     }

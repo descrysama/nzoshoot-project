@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('params', function (Blueprint $table) {
             $table->id();
             $table->string('slogan')->nullable();
-            $table->string('about_me')->nullable();
+            $table->mediumText('about_me')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();

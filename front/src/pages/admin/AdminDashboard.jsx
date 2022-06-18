@@ -10,6 +10,7 @@ const AdminDashboard = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [request, setRequest] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         ServiceWebsite.FetchParams().then(res => {
@@ -24,6 +25,8 @@ const AdminDashboard = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         ServiceWebsite.UpdateParams(slogan, aboutme, phone, email).then(res => {
+            setError(res.data);
+            console.log(res.data);
             setRequest(false);
         })
         setRequest(true)
@@ -40,6 +43,7 @@ const AdminDashboard = () => {
                     <h3 className="m-2" style={{color: 'white'}}>Bienvenue dans votre espace de gestion de contenu !</h3>
                     <div className="d-flex flex-direction-column justify-content-center align-items-center">
                         {request == true ? <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i> : null}
+                        {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="form-group mb-2">
                             <label className="form-label" htmlFor="slogan">Slogan :</label>
