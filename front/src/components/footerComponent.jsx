@@ -2,7 +2,7 @@ import logo from '../assets/images_content/nzoshoot_logo.png';
 
 const Footer = ({email, phone}) => {
     return (
-        <footer className="d-flex animate__animated animate__fadeIn" style={{justifyContent: 'space-around', backgroundColor: '#121212', padding: '18px 18px 18px 18px'}}>
+        <footer className="d-flex animate__animated animate__fadeIn" style={{justifyContent: 'space-around', backgroundColor: '#000000', padding: '18px 18px 18px 18px'}}>
             <div className="w-50" style={{textAlign:'center', color: 'white', justifyContent: 'center'}}>
                 <div className="d-flex flex-direction-column align-items-center justify-content-center" style={{padding: '10px'}}>
                     <img src={logo} width="120px" alt="logo nzoshoot" style={{padding: '20px'}} />

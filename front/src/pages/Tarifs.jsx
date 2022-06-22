@@ -42,6 +42,8 @@ const Galerie = ({isAuth}) => {
                     <p className="pricing-attribute">{item.photos}</p>
                     <div style={{borderBottom: '1px solid rgba(255, 255, 255, 0.3)'}}></div>
                     <p className="pricing-title" style={{color: 'white', fontStyle: 'italic'}}>{item.plan_price}€</p>
+                    <br />
+                    <Link to="/contactez-moi" className='yellowbutton'>Contactez-moi</Link>
                 </div>
                 ))}
             </div>

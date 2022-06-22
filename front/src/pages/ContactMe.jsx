@@ -92,7 +92,7 @@ const ContactMe = ({isAuth}) => {
                     <textarea className="form-textarea" name="message" value={message} onChange={(e) => setMessage(e.target.value)} id="message" cols="30" rows="10" placeholder="Une demande personnalisée sympathique..."></textarea>
                 </div>
                 <div className="form-group m-2">
-                    <label className="form-label" style={{fontSize: '25px'}} htmlFor="captcha">{captcha.first} + {captcha.second} = <span style={{color: 'red'}}>*</span></label>
+                    <label className="form-label noselect" style={{fontSize: '25px'}} htmlFor="captcha">{captcha.first} + {captcha.second} = <span style={{color: 'red'}}>*</span></label>
                     <input className="form-input" name="captcha" type="text" value={result} onChange={(e) => setResult(e.target.value)} placeholder="20"/>
                 </div>
                 <input className="yellowbutton" type="submit" value='Envoyer'/>

@@ -26,7 +26,7 @@ export const DeleteTarif = async(tarifid) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/tarif/delete/`, {
         session_token: token,
-        tarif_id: tarifid
+        tarif_id: tarifid,
     });
     return response;
 }
