@@ -37,13 +37,13 @@ const Galerie = ({isAuth}) => {
                 {tarifs.map((item, key) => (
                 <div key={key} className="pricing-card col-lg" style={{margin: "10px"}}>
                     <h3 className="pricing-title" style={{color: 'rgb(255, 255, 0)', margin: "10px"}}>{item.name}</h3>
-                    <p className="pricing-attribute">{item.time}</p>
-                    <p className="pricing-attribute">{item.description}</p>
-                    <p className="pricing-attribute">{item.photos}</p>
+                    <div className="princing-attribute-section">
+                        <p className="pricing-attribute">{item.time}</p>
+                        <p className="pricing-attribute">{item.description}</p>
+                        <p className="pricing-attribute">{item.photos}</p>
+                    </div>
                     <div style={{borderBottom: '1px solid rgba(255, 255, 255, 0.3)'}}></div>
                     <p className="pricing-title" style={{color: 'white', fontStyle: 'italic'}}>{item.plan_price}€</p>
-                    <br />
-                    <Link to="/contactez-moi" className='yellowbutton'>Contactez-moi</Link>
                 </div>
                 ))}
             </div>

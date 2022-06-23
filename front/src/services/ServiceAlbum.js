@@ -16,7 +16,11 @@ export const FetchAllImages = async(albumid) => {
 export const DeleteAlbum = async(albumid) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/album/delete/${albumid}`, {
-        session_token: token
+        session_token: token,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+        }
     })
 
     return response;
@@ -25,7 +29,11 @@ export const DeleteAlbum = async(albumid) => {
 export const DeleteImage = async(imageid) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/image/delete/${imageid}`, {
-        session_token: token
+        session_token: token,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+        }
     })
 
     return response;
@@ -41,6 +49,7 @@ export const createAlbum = async(nameValue, placeValue, coverValue) => {
     }, {
         headers: {
             "Content-type": "multipart/form-data",
+            'Access-Control-Allow-Origin': '*',
         }
     })
     return response;
@@ -55,6 +64,7 @@ export const addImages = async(images, albumid) => {
     },{
         headers: {
             "Content-type": "multipart/form-data",
+            'Access-Control-Allow-Origin': '*',
         }
     })
     return response;
@@ -77,6 +87,7 @@ export const updateAlbum = async(albumid, nameValue, placeValue, coverValue) => 
     {
         headers: {
             "Content-type": "multipart/form-data", 
+            'Access-Control-Allow-Origin': '*',
         }
     });
     return response;

@@ -28,7 +28,7 @@ const Galerie = ({isAuth}) => {
         <>
         <Navbar isAuth={isAuth}/>
         <div className="d-flex justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
-            {loading == false ? <h3 className="m-2" style={{color: 'white'}}>{albums.length > 0 ? null : "Aucun album pour le moment..."}</h3> : null}
+            {loading == false && albums.length <= 0 ? <h3 className="m-2" style={{color: 'white'}}>"Aucun album pour le moment..."</h3> : null}
             {loading ? 
             <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
             :

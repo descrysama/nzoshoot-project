@@ -40,23 +40,23 @@ const AdminTarifsEdit = () => {
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Nom <span style={{color: 'red'}}>*</span> : </label>
-                        <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Voyage"/>
+                        <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Nom"/>
                     </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Temps passer pour la prestation  : </label>
-                        <input className="form-input" name="time" type="text"  value={time} onChange={(e) => setTime(e.target.value)} placeholder="Voyage"/>
+                        <input className="form-input" name="time" type="text"  value={time} onChange={(e) => setTime(e.target.value)} placeholder="Temps"/>
                     </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Description  : </label>
-                        <input className="form-input" name="description" type="text"  value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Voyage"/>
+                        <input className="form-input" name="description" type="text"  value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description"/>
                     </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Nombre de photos  : </label>
-                        <input className="form-input" name="photos" type="text"  value={photos} onChange={(e) => setPhotos(e.target.value)} placeholder="Voyage"/>
+                        <input className="form-input" name="photos" type="text"  value={photos} onChange={(e) => setPhotos(e.target.value)} placeholder="Nombre de photos"/>
                     </div>
                     <div className="form-group mb-2">
                         <label className="form-label" htmlFor="name">Prix de la formule <span style={{color: 'red'}}>*</span> : </label>
-                        <input className="form-input" name="price" type="text"  value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Voyage"/>
+                        <input className="form-input" name="price" type="text"  value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Prix"/>
                     </div>
                     <input className="yellowbutton" type="submit" value='Envoyer'/>
                 </form>
