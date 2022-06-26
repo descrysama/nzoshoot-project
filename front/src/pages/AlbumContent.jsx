@@ -35,40 +35,40 @@ const AlbumContent = ({isAuth}) => {
                 <h2 style={{color: 'white'}}>Erreur 500 : Images non trouvées !</h2>
             </div>
             :
-           <>
-             <div>
-                {images.map((item, key) => (
-                key % 2 == 0 ?
-                <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{marginBottom: "10%", textAlign: 'center'}}>
-                    {item.type == 'image' ? 
-                    <img src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} width="80%"/>
+           <div className="album-content">
+                <div>
+                    {images.map((item, key) => (
+                    key % 2 == 0 ?
+                    <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{marginBottom: "10%", textAlign: 'center'}}>
+                        {item.type == 'image' ? 
+                        <img src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} width="80%"/>
+                        :
+                        <video controls width="80%">
+                            <source src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} type="video/mp4" />
+                        </video>
+                        }
+                    </div>
                     :
-                    <video controls width="80%">
-                        <source src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} type="video/mp4" />
-                    </video>
-                    }
+                    null
+                    ))}
                 </div>
-                :
-                null
-                ))}
-            </div>
-            <div>
-                {images.map((item, key) => (
-                key % 2 != 0 ?
-                <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{marginBottom: "10%", textAlign: 'center'}}>
-                    {item.type == 'image' ? 
-                    <img src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} width="80%"/>
+                <div>
+                    {images.map((item, key) => (
+                    key % 2 != 0 ?
+                    <div key={key} className="d-flex flex-direction-column justify-content-center align-items-center col-lg" style={{marginBottom: "10%", textAlign: 'center'}}>
+                        {item.type == 'image' ? 
+                        <img src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} alt={item.description} width="80%"/>
+                        :
+                        <video controls width="80%">
+                            <source src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} type="video/mp4" />
+                        </video>
+                        }
+                    </div>
                     :
-                    <video controls width="80%">
-                        <source src={`${process.env.REACT_APP_IMAGE}`+ item.image_path} type="video/mp4" />
-                    </video>
-                    }
+                    null
+                    ))}
                 </div>
-                :
-                null
-                ))}
-            </div>
-           </>
+           </div>
             }
 
         </div>

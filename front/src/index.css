@@ -150,6 +150,11 @@ a.active, a:hover{
 }
 
 @media (max-width: 1017px) {
+
+    .album-content {
+        display: block;
+    }
+    
     .checkbtn {
         display: block;
     }
@@ -158,7 +163,7 @@ a.active, a:hover{
         width: 80%;
         height: 100vh;
         left: -100%;
-        background-color: #121212b9;
+        background-color: rgba(0, 0, 0, 0.842);
         transition: all 0.5s;
         z-index: 100;
     }
@@ -342,6 +347,10 @@ h3 {
     width: 100%;   
 }
 
+.album-content {
+    display: flex;
+}
+
 
 
 
@@ -492,9 +501,13 @@ input[type='file']::-webkit-file-upload-button:hover {
     text-align: center;
 }
 
-@media (max-width: 757px) {
+@media (max-width: 758px) {
     form {
         width: 20em;
+    }
+
+    .album-content {
+        display: block;
     }
 }
 
@@ -504,7 +517,7 @@ input[type='file']::-webkit-file-upload-button:hover {
     }
 
     .pricing-card {
-        width: 230px;
+        width: 270px;
     }
 }
 

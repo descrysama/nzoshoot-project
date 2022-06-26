@@ -9,16 +9,6 @@ use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 // Authentification 
 
@@ -27,7 +17,7 @@ Route::post('/login', [UserController::class , 'login']); // Login
 Route::post('/resetpassword', [UserController::class , 'providetoken']); // Login
 Route::post('/resetpassword/checktoken', [UserController::class , 'checktoken']); 
 Route::post('/resetpassword/changepassword', [UserController::class , 'update']); 
-Route::post('/register', [UserController::class , 'store']); // Création d'un utilisateur pour la production (à supprimer avant le deploiement)
+// Route::post('/register', [UserController::class , 'store']); // Création d'un utilisateur pour la production (à supprimer avant le deploiement)
 
 //Routes publiques non protégées 
 

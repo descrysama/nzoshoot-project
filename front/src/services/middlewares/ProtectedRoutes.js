@@ -3,7 +3,8 @@ import { CheckAuth } from "./CheckAuth";
 import { Navigate } from 'react-router-dom';
 
 
-
+// Fais un method post avec le token stocké dans le localStorage 
+// et retourne l'enfant si il le client est connecté sinon il redirige à l'accueil.
 const ProtectedRoute = ({children}) => {
 
     const [logged, setLogged] = useState()

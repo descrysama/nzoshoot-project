@@ -48,7 +48,7 @@ function App() {
           <Route path='/album/:albumid' element={<AlbumContent isAuth={isAuth}/>}></Route>
           <Route path='/contactez-moi' element={<ContactMe isAuth={isAuth}/>}></Route>
 
-          {/* ADMIN ROUTES */}
+          {/* Routes admin protégez par le middleware ProtectedRoute ou ProtectLogin */}
           <Route path='/ns-nimda/login' element={<ProtectLogin><Login/></ProtectLogin>}></Route>
           <Route path='/ns-nimda/resetpassword' element={<ProtectLogin><ResetPassword/></ProtectLogin>}></Route>
           <Route path='/ns-nimda/resetpassword/:token' element={<CheckResetToken><ProtectLogin><ResetPassForm/></ProtectLogin></CheckResetToken>}></Route>

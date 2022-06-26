@@ -19,7 +19,7 @@ const ContactMe = ({isAuth}) => {
         return Math.floor(Math.random() * max);
     }
 
-
+ // j'ai ajouté ce "captcha" afin de limiter les envoi massifs d'email et donc limiter le stockage en BDD.
     const [captcha, setCaptcha] = useState({
         first: getRandomInt(50),
         second: getRandomInt(50)

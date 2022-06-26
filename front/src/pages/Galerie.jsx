@@ -14,9 +14,10 @@ const Galerie = ({isAuth}) => {
     const [email, setEmail] = useState('');
 
     useEffect(() => {
+        // le service recuperant tout les albums.
         ServiceAlbum.FetchAllAlbums().then(res => {
-            setAlbums(res)
-            setLoading(false)
+            setAlbums(res) // ici on defini la variable album
+            setLoading(false) // puis on set le loading sur false (ce qui permet d'afficher le else de la condition de la view à la ligne 32).
         });
         ServiceWebsite.FetchParams().then(res => {
             setPhone(res.data.params[0].phone_number)

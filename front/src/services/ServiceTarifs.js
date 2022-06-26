@@ -8,7 +8,7 @@ export const FetchAllPrices = async() => {
 
 
 
-
+// POST : requête pour la création d'un tarif contenant tout les champs à remplir dans la BDD.
 export const CreateTarif = async(nameValue, timeValue, descriptionValue, photosValue, priceValue) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/tarif/create`, {
@@ -26,6 +26,7 @@ export const CreateTarif = async(nameValue, timeValue, descriptionValue, photosV
     return response;
 }
 
+// POST : requête pour supprimer un tarif, ayant l'id du tarif et le token de l'admin pour authentifier la requête.
 export const DeleteTarif = async(tarifid) => {
     let token = localStorage.getItem('session_token');
     let response = await axios.post(`${process.env.REACT_APP_API}/tarif/delete`, {

@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 
 const Home = ({isAuth}) => {
 
+    // variables qui seront définies par la requete GET à la table params
+
     const [slogan, setSlogan] = useState('');
     const [aboutme, setAboutme] = useState('');
     const [phone, setPhone] = useState('');
@@ -18,6 +20,7 @@ const Home = ({isAuth}) => {
 
     useEffect(() => {
         ServiceWebsite.FetchParams().then(res => {
+            // on défini les variables grace à la fonction useState qui permet le cicle de vie de ces dernières.
             setSlogan(res.data.params[0].slogan)
             setAboutme(res.data.params[0].about_me)
             setPhone(res.data.params[0].phone_number)
@@ -27,6 +30,7 @@ const Home = ({isAuth}) => {
     
     return (
         <>
+        {/* Je passe un paramètre à la navBar isAuth qui vaut soit true ou bien false afin de savoir si on est connecté ou non et qui provient lui même de App.js. */}
         <Navbar isAuth={isAuth} />
         <div className="d-flex flex-direction-column align-items-center">
             <section className='d-flex' id='home-section'>
@@ -64,6 +68,7 @@ const Home = ({isAuth}) => {
                 </div>
             </section>
         </div>
+        {/* Pareil ici, les paramètres email et phone sont passés ils proviennent aussi de la table params.  */}
         <Footer email={email} phone={phone}/>
         </>
     )

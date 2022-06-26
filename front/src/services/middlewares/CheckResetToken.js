@@ -2,7 +2,7 @@ import { useEffect, useState,  } from "react";
 import { Navigate, useLocation } from 'react-router-dom';
 import * as ServiceUser from '../ServiceUser';
 
-
+// Fais un method post avec le token de l'url. Si il se trouve dans la BDD sur la ligne de l'admin c'est qu'il est valide et donc on peut réinitialiser le mot de passe.
 const CheckResetToken = ({children}) => {
 
     const [token, setToken] = useState()
