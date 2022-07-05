@@ -36,7 +36,7 @@ class AlbumController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'place' => 'required|max:255',
-            'cover_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'cover_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp'
         ]);
         if ($user) {
             if ($validator->fails()) {
@@ -91,7 +91,7 @@ class AlbumController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'max:255',
                 'place' => 'max:255',
-                'cover_path' => 'mimes:jpeg,png,jpg,gif,svg'
+                'cover_path' => 'mimes:jpeg,png,jpg,gif,svg,webp'
             ]);
             if ($validator->fails()) {
                 return response()->json([
