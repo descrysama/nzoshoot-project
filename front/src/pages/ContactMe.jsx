@@ -14,6 +14,7 @@ const ContactMe = ({isAuth}) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState();
+    const [errorCaptcha, setErrorCaptcha] = useState('');
 
     const getRandomInt = (max) => {
         return Math.floor(Math.random() * max);
@@ -21,8 +22,8 @@ const ContactMe = ({isAuth}) => {
 
  // j'ai ajouté ce "captcha" afin de limiter les envoi massifs d'email et donc limiter le stockage en BDD.
     const [captcha, setCaptcha] = useState({
-        first: getRandomInt(50),
-        second: getRandomInt(50)
+        first: getRandomInt(20),
+        second: getRandomInt(20)
     });
     const [result, setResult] = useState('');
 
@@ -38,9 +39,11 @@ const ContactMe = ({isAuth}) => {
         setEmail('');
         setPhoneNumber('');
         setMessage('');
+        setResult('');
+        setErrorCaptcha('');
         setCaptcha({
-            first: getRandomInt(50),
-            second: getRandomInt(50)
+            first: getRandomInt(20),
+            second: getRandomInt(20)
         })
     }
 
@@ -54,10 +57,11 @@ const ContactMe = ({isAuth}) => {
                 })
                 ResetValues();
             } else {
-                setError({
+                setErrorCaptcha({
                     status: false,
                     text: 'Captcha incorrect.'
-                })
+                });
+                setError('');
             }
         } else {
             setError({
@@ -77,26 +81,27 @@ const ContactMe = ({isAuth}) => {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="name">NOM Prenom :</label>
-                    <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)} placeholder="Nzo Shoot"/>
+                    <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="email">Adresse Email <span style={{color: 'red'}}>*</span> :</label>
-                    <input className="form-input" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nzoshoot@gmail.com"/>
+                    <input className="form-input" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="phone_number">Numero de téléphone :</label>
-                    <input className="form-input" name="phone_number" type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="06.06.06.06.06"/>
+                    <input className="form-input" name="phone_number" type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} p/>
                 </div>
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="message">Message <span style={{color: 'red'}}>*</span> :</label>
-                    <textarea className="form-textarea" name="message" value={message} onChange={(e) => setMessage(e.target.value)} id="message" cols="30" rows="10" placeholder="Une demande personnalisée sympathique..."></textarea>
+                    <textarea className="form-textarea" name="message" value={message} onChange={(e) => setMessage(e.target.value)} id="message" cols="30" rows="10" ></textarea>
                 </div>
                 <div className="form-group m-2">
                     <label className="form-label noselect" style={{fontSize: '25px'}} htmlFor="captcha">{captcha.first} + {captcha.second} = <span style={{color: 'red'}}>*</span></label>
-                    <input className="form-input" name="captcha" type="text" value={result} onChange={(e) => setResult(e.target.value)} placeholder="20"/>
+                    <input className="form-input" name="captcha" type="text" value={result} onChange={(e) => setResult(e.target.value)} />
                 </div>
                 <input className="yellowbutton" type="submit" value='Envoyer'/>
             </form>
+            {errorCaptcha ? <p className="error-badge">{errorCaptcha.text}</p> : null}
         </div>
         <Footer email={emailfooter} phone={phone}/>
         </>

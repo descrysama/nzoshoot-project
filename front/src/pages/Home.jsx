@@ -52,7 +52,7 @@ const Home = ({isAuth}) => {
                 <div id="about-section-1" style={{width: '80%'}} className='d-flex align-items-center justify-content-center'>
                     <div className='p-4 d-flex flex-direction-column p-2 w-75'>
                         <h3 style={{marginBottom: '30px', textAlign: 'left'}}><span style={{color: 'rgb(255, 255, 0)'}}>|</span> A propos de moi</h3>
-                        <p>{aboutme}</p>
+                        <p style={{lineHeight: '2rem'}}>{aboutme}</p>
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
                         <img id="img-pro" src={professionnal} alt="nzoshoot professionnel"/>

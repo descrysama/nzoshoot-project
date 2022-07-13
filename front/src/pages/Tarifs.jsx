@@ -15,6 +15,7 @@ const Galerie = ({isAuth}) => {
 
     useEffect(() => {
         ServiceTarifs.FetchAllPrices().then(res => {
+            console.log(res)
             setTarifs(res)
             setLoading(false)
         });
@@ -29,13 +30,14 @@ const Galerie = ({isAuth}) => {
         <>
         <Navbar isAuth={isAuth}/>
         <div className="d-flex justify-content-center align-items-center container animate__animated animate__fadeIn p-2">
+            <h3 style={{color: 'white'}}>Cliquez sur les tarifs et contactez-moi :)</h3>
             {loading == false ? <h3 className="m-2" style={{color: 'white'}}>{tarifs.length > 0 ? null : "Aucun tarif pour le moment..."}</h3> : null}
             {loading ? 
             <i className="fa-solid fa-spinner fa-2xl white-icon animate__animated animate__infinite animate__rotateOut m-2"></i>
             :
             <div className="d-flex justify-content-center align-items-center container">
                 {tarifs.map((item, key) => (
-                <div key={key} className="pricing-card col-lg" style={{margin: "10px"}}>
+                <Link to='/contactez-moi' key={key} className="pricing-card col-lg" style={{margin: "10px"}}>
                     <h3 className="pricing-title" style={{color: 'rgb(255, 255, 0)', margin: "10px"}}>{item.name}</h3>
                     <div className="princing-attribute-section">
                         <p className="pricing-attribute">{item.time}</p>
@@ -44,7 +46,7 @@ const Galerie = ({isAuth}) => {
                     </div>
                     <div style={{borderBottom: '1px solid rgba(255, 255, 255, 0.3)'}}></div>
                     <p className="pricing-title" style={{color: 'white', fontStyle: 'italic'}}>{item.plan_price}€</p>
-                </div>
+                </Link>
                 ))}
             </div>
             }

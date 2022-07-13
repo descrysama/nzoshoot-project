@@ -14,7 +14,7 @@ const AdminTarifsEdit = () => {
 
     const [name, setName] = useState(tarif.name);
     const [time, setTime] = useState(tarif.time ? tarif.time : '');
-    const [description, setDescription] = useState(tarif.description ? tarif.photos : '');
+    const [description, setDescription] = useState(tarif.description ? tarif.description : '');
     const [photos, setPhotos] = useState(tarif.photos ? tarif.photos : '');
     const [price, setPrice] = useState(tarif.plan_price);
 
@@ -22,6 +22,7 @@ const AdminTarifsEdit = () => {
     e.preventDefault();
     ServiceTarifs.UpdateTarif(tarif.id, name, time, description, photos, price).then(res => {
         setError(res.data.text);
+        console.log(tarif)
         setRequest(false);
     })
     setRequest(true);
