@@ -1,8 +1,8 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import './bootstrap.min.css';
 
-import ProtectedRoute from './services/middlewares/ProtectedRoutes';
+import ProtectedRoute from './services/middlewares/ProtectedRoute';
 
 import Home from './pages/Home';
 import Galerie from './pages/Galerie';
@@ -39,7 +39,7 @@ function App() {
   }, [])
 
   return (
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           {/* PUBLIC ROUTES */}
           <Route path='/' element={<Home isAuth={isAuth}/>}></Route>
@@ -66,7 +66,7 @@ function App() {
 
           <Route path='*' element={<Error404/>}></Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
   );
 }
 

@@ -24,7 +24,7 @@ class ImageController extends Controller
         $user = User::where('session_token', $request->session_token)->first();
         if ($user) {
             $validator = Validator::make($request->all( ), [
-                'image_path' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4,ogg,mov'
+                'image_path' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4,ogg,mov,webp'
             ]);
             if ($validator->fails()) {
                 return response()->json([
