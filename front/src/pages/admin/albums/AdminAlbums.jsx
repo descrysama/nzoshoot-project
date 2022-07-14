@@ -10,7 +10,13 @@ const AdminAlbums = () => {
 
     useEffect(() => {
         ServiceAlbum.FetchAllAlbums().then(res => {
-            setAlbums(res)
+            setAlbums(res.sort((a , b) => {
+                if (a.item_order < b.item_order) {
+                    return -1
+                } else {
+                    return +1
+                }
+            }))
             setLoading(false)
         });
     }, [])
@@ -18,6 +24,21 @@ const AdminAlbums = () => {
     const RemoveHandler = (albumid) => {
         ServiceAlbum.DeleteAlbum(albumid).then(() => {
             setAlbums(albums.filter(album => album.id !== albumid));
+        })
+    }
+
+    const ChangeOrder = (albumid, direction) => {
+        ServiceAlbum.OrderAlbum(albumid, direction).then((res) => {
+            ServiceAlbum.FetchAllAlbums().then(res => {
+                setAlbums(res.sort((a , b) => {
+                    if (a.item_order < b.item_order) {
+                        return -1
+                    } else {
+                        return +1
+                    }
+                }))
+                setLoading(false)
+            });
         })
     }
 
@@ -42,6 +63,10 @@ const AdminAlbums = () => {
                                 <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
                                 <Link to={`${item.id}`} className="yellowbutton"><i className="fa-solid fa-pen-to-square"></i></Link>
                                 <Link to={`add/${item.id}`} state={{id: item.id}} className="yellowbutton"><i className="fa-solid fa-plus"></i></Link>
+                            </ul>
+                            <ul>
+                                <li className="yellowbutton" onClick={() => ChangeOrder(item.id, 'plus')}><i className="fa-solid fa-arrow-up"></i></li>
+                                <li className="yellowbutton" onClick={() => ChangeOrder(item.id, 'minus')}><i className="fa-solid fa-arrow-down"></i></li>
                             </ul>
                         </div>
                     ))}

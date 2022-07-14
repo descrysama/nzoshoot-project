@@ -29,7 +29,7 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->from('nzobot@nzoshoot.com', 'Nzoshoot Formulaire')
+        return $this->from('nzoshoot1234@laposte.net', 'Nzoshoot Formulaire')
         ->view('emails.contact')
         ->with(['contact' => $this->contact]);
     }

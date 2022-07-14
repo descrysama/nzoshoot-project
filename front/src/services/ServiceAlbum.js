@@ -101,3 +101,19 @@ export const updateAlbum = async(albumid, nameValue, placeValue, coverValue) => 
     });
     return response;
 }
+
+export const OrderAlbum = async(albumid, direction) => {
+    let token = localStorage.getItem('session_token');
+    let response = await axios.post(`${process.env.REACT_APP_API}/album/order`, {
+        order: direction,
+        album_id: albumid,
+        session_token: token,
+    },
+    {
+        headers: {
+            "Content-type": "multipart/form-data", 
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+    return response;
+}

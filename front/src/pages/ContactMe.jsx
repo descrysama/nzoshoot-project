@@ -3,7 +3,8 @@ import Footer from "../components/footerComponent";
 import * as ServiceWebsite from "../services/ServiceWebsite";
 import * as ServiceContact from "../services/ServiceContact";
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
 
 const ContactMe = ({isAuth}) => {
 
@@ -14,18 +15,8 @@ const ContactMe = ({isAuth}) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState();
-    const [errorCaptcha, setErrorCaptcha] = useState('');
+    const [token, setToken] = useState();
 
-    const getRandomInt = (max) => {
-        return Math.floor(Math.random() * max);
-    }
-
- // j'ai ajouté ce "captcha" afin de limiter les envoi massifs d'email et donc limiter le stockage en BDD.
-    const [captcha, setCaptcha] = useState({
-        first: getRandomInt(20),
-        second: getRandomInt(20)
-    });
-    const [result, setResult] = useState('');
 
     useEffect(() => {
         ServiceWebsite.FetchParams().then(res => {
@@ -39,34 +30,27 @@ const ContactMe = ({isAuth}) => {
         setEmail('');
         setPhoneNumber('');
         setMessage('');
-        setResult('');
-        setErrorCaptcha('');
-        setCaptcha({
-            first: getRandomInt(20),
-            second: getRandomInt(20)
-        })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = async() => {
 
-        if (email && message) {
-            if (result == captcha.first + captcha.second) {
+        if (token) {
+            if (email && message) {
                 ServiceContact.SendForm(name, email, phoneNumber, message).then(res => {
                     setError(res.data)
                 })
+                window.grecaptcha.reset();
                 ResetValues();
             } else {
-                setErrorCaptcha({
+                setError({
                     status: false,
-                    text: 'Captcha incorrect.'
-                });
-                setError('');
+                    text: 'Veuillez verifier le formulaire. Email et message obligatoires.'
+                })
             }
         } else {
             setError({
                 status: false,
-                text: 'Veuillez verifier le formulaire. Email et message obligatoires.'
+                text: 'Captcha incorrect.'
             })
         }
     }
@@ -78,7 +62,7 @@ const ContactMe = ({isAuth}) => {
         <div className="d-flex flex-direction-column align-items-center justify-content-center animate__animated animate__fadeIn p-2" style={{textAlign: 'center'}}>
             <h2 style={{color: 'white'}}>Contactez-moi</h2>
             {error ? <p className={error.status == false ? "error-badge" : "success-badge"}>{error.text}</p> : null}
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="form-size">
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="name">NOM Prenom :</label>
                     <input className="form-input" name="name" type="text"  value={name} onChange={(e) => setName(e.target.value)}/>
@@ -89,19 +73,21 @@ const ContactMe = ({isAuth}) => {
                 </div>
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="phone_number">Numero de téléphone :</label>
-                    <input className="form-input" name="phone_number" type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} p/>
+                    <input className="form-input" name="phone_number" type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                 </div>
                 <div className="form-group m-2">
                     <label className="form-label" htmlFor="message">Message <span style={{color: 'red'}}>*</span> :</label>
                     <textarea className="form-textarea" name="message" value={message} onChange={(e) => setMessage(e.target.value)} id="message" cols="30" rows="10" ></textarea>
                 </div>
-                <div className="form-group m-2">
-                    <label className="form-label noselect" style={{fontSize: '25px'}} htmlFor="captcha">{captcha.first} + {captcha.second} = <span style={{color: 'red'}}>*</span></label>
-                    <input className="form-input" name="captcha" type="text" value={result} onChange={(e) => setResult(e.target.value)} />
+                <div className="form-group m-2 d-flex justify-content-center align-items-center">
+                    <ReCAPTCHA
+                        sitekey="6LdoN-kgAAAAAJFouJ7X3sElM08kXg1Xj92bWXCv"
+                        onChange={(token) => setToken(token)}
+                    />
                 </div>
-                <input className="yellowbutton" type="submit" value='Envoyer'/>
-            </form>
-            {errorCaptcha ? <p className="error-badge">{errorCaptcha.text}</p> : null}
+                <input className="yellowbutton" type="button" onClick={(e) => handleSubmit(e)} value='Envoyer'/>
+            </div>
+
         </div>
         <Footer email={emailfooter} phone={phone}/>
         </>

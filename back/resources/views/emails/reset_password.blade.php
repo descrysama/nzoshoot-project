@@ -559,5 +559,5 @@ td {
 </style>
 <div class="d-flex flex-direction-column justify-content-center align-items-center text-align-center p-2">
     <h3 style="color:white">Bonjour Enzo, Voici votre lien de réinitialisation ne le perdez pas cette fois-ci :)</h3>
-    <a href="http://localhost:3000/ns-nimda/resetpassword/{{$user->reset_password_token}}">Lien de réinitialisation</a>
+    <a href="https://nzoshoot.com/#/ns-nimda/resetpassword/{{$user->reset_password_token}}">Lien de réinitialisation</a>
 </div>

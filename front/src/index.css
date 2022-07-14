@@ -455,6 +455,12 @@ form {
     margin: 2rem;
 }
 
+.form-size {
+    max-width: 80%;
+    width: 30em;
+    margin: 2rem;
+}
+
 .form-textarea {
     border-radius: 5px;
     border: none;

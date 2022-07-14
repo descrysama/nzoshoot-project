@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('images_models', function (Blueprint $table) {
             $table->id();
             $table->string('description')->nullable(); // description de l'image
             $table->string('type'); // type du fichier video/image');
             $table->string('image_path'); // chemin de l'image
             $table->integer('album_id'); // id de l'album
+            $table->integer('item_order');
             $table->timestamps();
         });
     }

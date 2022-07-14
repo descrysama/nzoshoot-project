@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, HashRouter } from 'react-router-dom';
 import './index.css';
 import './bootstrap.min.css';
 
@@ -39,7 +39,7 @@ function App() {
   }, [])
 
   return (
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           {/* PUBLIC ROUTES */}
           <Route path='/' element={<Home isAuth={isAuth}/>}></Route>
@@ -66,7 +66,7 @@ function App() {
 
           <Route path='*' element={<Error404/>}></Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
   );
 }
 

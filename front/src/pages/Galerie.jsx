@@ -16,7 +16,13 @@ const Galerie = ({isAuth}) => {
     useEffect(() => {
         // le service recuperant tout les albums.
         ServiceAlbum.FetchAllAlbums().then(res => {
-            setAlbums(res) // ici on defini la variable album
+            setAlbums(res.sort((a , b) => {
+                if (a.item_order < b.item_order) {
+                    return -1
+                } else {
+                    return +1
+                }
+            })) // ici on defini la variable album
             setLoading(false) // puis on set le loading sur false (ce qui permet d'afficher le else de la condition de la view à la ligne 32).
         });
         ServiceWebsite.FetchParams().then(res => {

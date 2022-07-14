@@ -20,6 +20,7 @@ return new class extends Migration
             $table->mediumText('description')->nullable(); // Description de la formule
             $table->mediumText('photos')->nullable(); // Nombre de photos
             $table->string('plan_price'); // Prix de la formule
+            $table->integer('item_order');
             $table->timestamps();
         });
     }

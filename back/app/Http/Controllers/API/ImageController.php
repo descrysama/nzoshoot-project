@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Image;
+use App\Models\ImageModel;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -15,7 +16,7 @@ class ImageController extends Controller
     
     public function index($album_id)
     {
-        $images = Image::where('album_id', $album_id)->get();
+        $images = ImageModel::where('album_id', $album_id)->get();
         return response()->json($images);
     }
 
@@ -24,7 +25,7 @@ class ImageController extends Controller
         $user = User::where('session_token', $request->session_token)->first();
         if ($user) {
             $validator = Validator::make($request->all( ), [
-                'image_path' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4,ogg,mov,webp'
+                'image_path' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4,ogg,mov'
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -37,14 +38,18 @@ class ImageController extends Controller
                 $extension = $request->image_path->getClientOriginalExtension();
                 if($extension == 'mp4' || $extension == 'ogg' || $extension == 'mov') {
                     $request->image_path->move(public_path('documents/videos'), $filename);
-                    $video = new Image();
+                    $video = new ImageModel();
                     $video->image_path = '/documents/videos/'. $filename;
                     $video->album_id = $request->album_id;
                     $video->type = 'video';
                     $video->save();
                 } else {
-                    $request->image_path->move('documents/images/', $filename);
-                    $image = new Image();
+                    $resize = Image::make($request->image_path->getRealPath());
+                    $resize->resize(3000, 3000, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $resize->save(public_path('documents/images/'. $filename));
+                    $image = new ImageModel();
                     $image->image_path = '/documents/images/'. $filename;
                     $image->album_id = $request->album_id;
                     $image->type = 'image';
@@ -62,7 +67,7 @@ class ImageController extends Controller
         $user = User::where('session_token', $request->session_token)->first();
         
         if($user) {
-            $image = Image::where('id', $request->image_id)->first();
+            $image = ImageModel::where('id', $request->image_id)->first();
             File::delete('.'.$image->image_path);
             $image->delete();
             return response()->json(['status' => true]);

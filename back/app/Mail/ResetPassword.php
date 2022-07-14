@@ -30,7 +30,7 @@ class ResetPassword extends Mailable
     public function build()
     {
 
-        return $this->from('nzobot@nzoshoot.com', 'Réinitialisation du mot de passe')
+        return $this->from('nzoshoot1234@laposte.net', 'Réinitialisation du mot de passe')
                     ->view('emails.reset_password')
                     ->with(['user' => $this->user]);
     }

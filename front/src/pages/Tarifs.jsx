@@ -15,7 +15,6 @@ const Galerie = ({isAuth}) => {
 
     useEffect(() => {
         ServiceTarifs.FetchAllPrices().then(res => {
-            console.log(res)
             setTarifs(res)
             setLoading(false)
         });
@@ -45,7 +44,11 @@ const Galerie = ({isAuth}) => {
                         <p className="pricing-attribute">{item.photos}</p>
                     </div>
                     <div style={{borderBottom: '1px solid rgba(255, 255, 255, 0.3)'}}></div>
+                    {item.plan_price == 0 ?
+                    <p className="pricing-title" style={{color: 'white', fontStyle: 'italic'}}>Contactez-moi pour un devis</p>
+                    :
                     <p className="pricing-title" style={{color: 'white', fontStyle: 'italic'}}>{item.plan_price}€</p>
+                    }
                 </Link>
                 ))}
             </div>

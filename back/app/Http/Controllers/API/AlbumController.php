@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
-use App\Models\Image;
+use App\Models\ImageModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -36,7 +36,7 @@ class AlbumController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'place' => 'required|max:255',
-            'cover_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp'
+            'cover_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
         if ($user) {
             if ($validator->fails()) {
@@ -91,7 +91,7 @@ class AlbumController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'max:255',
                 'place' => 'max:255',
-                'cover_path' => 'mimes:jpeg,png,jpg,gif,svg,webp'
+                'cover_path' => 'mimes:jpeg,png,jpg,gif,svg'
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -134,7 +134,7 @@ class AlbumController extends Controller
         
         if($user) {
             $album = Album::where('id', $request->album_id)->first();
-            $allImages = Image::where('album_id', $request->album_id)->get();
+            $allImages = ImageModel::where('album_id', $request->album_id)->get();
             foreach($allImages as $image) {
                 File::delete('.'.$image->image_path);
                 $image->delete();
@@ -144,6 +144,50 @@ class AlbumController extends Controller
             return response()->json(['status' => true]);
         } else {
             return response()->json(['status' => false]);
+        }
+    }
+
+    public function order(Request $request)
+    {
+        $user = User::where('session_token', $request->session_token)->first();
+        $album = Album::find($request->album_id);
+
+        if ($request->order == 'minus') {
+            $changealbum = Album::where('item_order', $album->item_order + 1)->first();
+        } elseif ($request->order == 'plus') {
+            $changealbum = Album::where('item_order', $album->item_order - 1)->first();
+        }
+        
+        if($user) {
+            if ($request->order == 'minus') {
+                if ($album->item_order < Album::count()) {
+                    $album->item_order = $album->item_order + 1;
+                    $changealbum->item_order = $changealbum->item_order - 1;
+                    $album->save();
+                    $changealbum->save();
+                    return response()->json([
+                        'text' => "L'album a été déplacé vers le bas.",
+                        'length' => Album::count()
+                    ]);
+                } else {
+                    return response()->json(['Error' => 'Vous ne pouvez pas déplacer cet album il est déja dernier.']);
+                }
+            } elseif ($request->order == 'plus') {
+                if ($album->item_order > 1) {
+                    $album->item_order = $album->item_order - 1;
+                    $changealbum->item_order = $changealbum->item_order + 1;
+                    $album->save();
+                    $changealbum->save();
+                    return response()->json([
+                        'text' => "L'album a été déplacé vers le haut.",
+                        'length' => Album::count()
+                    ]);
+                } else {
+                    return response()->json(['Error' => 'Vous ne pouvez pas déplacer cet album il est déja premier.']);
+                }
+
+                
+            }
         }
     }
 }
