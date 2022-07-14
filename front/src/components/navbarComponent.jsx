@@ -14,7 +14,7 @@ const Navbar = ({isAuth}) => {
                 <label htmlFor="check" className='checkbtn'>
                     <i className='fas fa-bars'></i>
                 </label>
-                <img className='logo' src={logo} alt="" />
+                <img className='logo' src={logo} alt="logo" />
                 <ul>
                     <li><Link onClick={() => setChecked(false)} to='/'>Accueil</Link></li>
                     <li><Link onClick={() => setChecked(false)} to='/galerie'>Galerie</Link></li>

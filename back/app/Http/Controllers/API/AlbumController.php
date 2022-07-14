@@ -35,7 +35,6 @@ class AlbumController extends Controller
         $user = User::where('session_token', $request->session_token)->first();
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'place' => 'required|max:255',
             'cover_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
         if ($user) {
@@ -53,7 +52,15 @@ class AlbumController extends Controller
                 $album->name = $request->name;
                 $album->place = $request->place;
                 $album->cover_path = '/documents/covers/'. $filename;
+                $album->item_order = 1;
                 $album->save();
+
+                foreach(Album::all() as $line) {
+                    if($line->item_order > 1) {
+                        $line->item_order++;
+                        $line->save();
+                    }
+                }
     
                 return response()->json([
                     'status' => true,
@@ -140,6 +147,12 @@ class AlbumController extends Controller
                 $image->delete();
             }
             File::delete('.'.$album->cover_path);
+            foreach(Album::all() as $line) {
+                if($line->item_order > $album->item_order) {
+                    $line->item_order--;
+                    $line->save();
+                }
+            }
             $album->delete();
             return response()->json(['status' => true]);
         } else {
