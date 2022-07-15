@@ -17,7 +17,13 @@ const AdminAddPhoto = () => {
 
     useEffect(() => {
         ServiceAlbum.FetchAllImages(id).then(res => {
-            setImages(res)
+            setImages(res.sort((a , b) => {
+                if (a.item_order < b.item_order) {
+                    return -1
+                } else {
+                    return +1
+                }
+            }))
             setLoading(false)
         });
     }, [request])
@@ -28,6 +34,19 @@ const AdminAddPhoto = () => {
             setRemoveAnimation(false);
         })
         setRemoveAnimation(imageid);
+    }
+
+    const ChangeOrder = (imageid, direction) => {
+        ServiceAlbum.OrderImage(imageid, direction).then((res) => {
+            
+            setImages((res.data.album_images.sort((a , b) => {
+                if (a.item_order < b.item_order) {
+                    return -1
+                } else {
+                    return +1
+                }
+            })))
+        })
     }
 
     const handleSubmit = async(e) => {
@@ -63,10 +82,14 @@ const AdminAddPhoto = () => {
                         {images.length > 0 ?
                         images.map((item, key) => (
                             <div key={key} className={RemoveAnimation == item.id ? "animate__bounceOut" : null} style={{margin: "30px", textAlign: 'center', width: '8em'}}>
-                                <div style={{backgroundImage: `url(${item.type == 'image' ? process.env.REACT_APP_IMAGE + item.image_path : process.env.REACT_APP_DEFAULT_IMG})`, width: '240px', height:'240px', backgroundSize: 'cover'}}>
+                                <div style={{backgroundImage: `url(${item.type == 'image' ? process.env.REACT_APP_IMAGE + item.image_path : process.env.REACT_APP_DEFAULT_IMG})`, width: '220px', height:'220px', backgroundSize: 'cover'}}>
                                 </div>
                                 <p className="album-info" style={{margin: "2px"}}>{item.description}</p>
                                 <li onClick={() => RemoveHandler(item.id)} className="yellowbutton"><i className="fa-solid fa-trash-can"></i></li>
+                                <ul>
+                                    <li className="yellowbutton" onClick={() => ChangeOrder(item.id, 'plus')}><i className="fa-solid fa-arrow-left"></i></li>
+                                    <li className="yellowbutton" onClick={() => ChangeOrder(item.id, 'minus')}><i className="fa-solid fa-arrow-right"></i></li>
+                                </ul>
                             </div>
                         )):
                         <h3 className="m-2" style={{color: 'white'}}>Aucune image...</h3>}

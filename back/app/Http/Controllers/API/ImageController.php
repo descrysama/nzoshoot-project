@@ -75,4 +75,60 @@ class ImageController extends Controller
             return response()->json(['status' => false]);
         }
     }
+
+    public function order(Request $request)
+    {
+        $user = User::where('session_token', $request->session_token)->first();
+        $image = ImageModel::find($request->image_id);
+
+        if ($request->order == 'minus') {
+            $changeimage = ImageModel::where('album_id', $image->album_id)->where('item_order', $image->item_order + 1)->first();
+        } elseif ($request->order == 'plus') {
+            $changeimage = ImageModel::where('album_id', $image->album_id)->where('item_order', $image->item_order - 1)->first();
+        }
+        
+        if($user) {
+            if ($request->order == 'minus') {
+                if ($image->item_order < ImageModel::where('album_id', $image->album_id)->count()) {
+                    $image->item_order = $image->item_order + 1;
+                    $changeimage->item_order = $changeimage->item_order - 1;
+                    $image->save();
+                    $changeimage->save();
+                    return response()->json([
+                        'text' => "L'image a été déplacé vers le bas.",
+                        'length' => ImageModel::where('album_id', $image->album_id)->count(),
+                        'album_images' => ImageModel::where('album_id', $image->album_id)->get()
+                    ]);
+                } else {
+                    return response()->json(['Error' => 'Vous ne pouvez pas déplacer cette image elle est déja dernière.']);
+                }
+            } elseif ($request->order == 'plus') {
+                if ($image->item_order > 1) {
+                    $image->item_order = $image->item_order - 1;
+                    $changeimage->item_order = $changeimage->item_order + 1;
+                    $image->save();
+                    $changeimage->save();
+                    return response()->json([
+                        'text' => "L'album a été déplacé vers le haut.",
+                        'length' => ImageModel::where('album_id', $image->album_id)->count(),
+                        'album_images' => ImageModel::where('album_id', $image->album_id)->get()   
+                    ]);
+                } else {
+                    return response()->json(['Error' => 'Vous ne pouvez pas déplacer cette image elle est  déja premier.']);
+                }
+
+                
+            }
+        }
+    }
+
+    // public function makeorderonce(Request $request)
+    // {
+    //     $album = ImageModel::where('album_id', $request->album_id)->get();
+    //     $i = 1;
+    //     foreach($album as $image) {
+    //         $image->item_order = $i++;
+    //         $image->save();
+    //     }
+    // }
 }

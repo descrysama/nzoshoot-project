@@ -53,14 +53,15 @@ class AlbumController extends Controller
                 $album->place = $request->place;
                 $album->cover_path = '/documents/covers/'. $filename;
                 $album->item_order = 1;
-                $album->save();
-
                 foreach(Album::all() as $line) {
-                    if($line->item_order > 1) {
+                    if($line->item_order >= 1) {
                         $line->item_order++;
                         $line->save();
                     }
                 }
+                $album->save();
+
+                
     
                 return response()->json([
                     'status' => true,

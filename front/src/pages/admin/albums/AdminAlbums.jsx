@@ -28,7 +28,7 @@ const AdminAlbums = () => {
     }
 
     const ChangeOrder = (albumid, direction) => {
-        ServiceAlbum.OrderAlbum(albumid, direction).then((res) => {
+        ServiceAlbum.OrderAlbum(albumid, direction).then(() => {
             ServiceAlbum.FetchAllAlbums().then(res => {
                 setAlbums(res.sort((a , b) => {
                     if (a.item_order < b.item_order) {

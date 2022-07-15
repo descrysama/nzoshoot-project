@@ -44,9 +44,11 @@ Route::middleware(['cors'])->group(function () {
     Route::post('/image/delete/{image_id}', [ImageController::class, 'destroy']); // suppression de l'album avec son image et les images contenues dans l'album
     Route::get('/album/edit/{album_id}', [AlbumController::class, 'show']); // Retourne les données de l'album pour l'afficher dans la page d'edit
     Route::post('/album/edit/{album_id}', [AlbumController::class, 'update']); // update album
-    Route::post('/album/order', [AlbumController::class, 'order']); // update album
+    Route::post('/album/order', [AlbumController::class, 'order']);
     Route::post('/album/create', [AlbumController::class, 'store']);
     Route::post('/image/create', [ImageController::class, 'store']);
+    Route::post('/image/order', [ImageController::class, 'order']);
+    Route::post('/image/makeorderonce', [ImageController::class, 'makeorderonce']);
     Route::post('/tarif/delete', [FormuleController::class, 'destroy']); // suppression de la formule
     Route::post('/tarif/create', [FormuleController::class, 'store']); // création de la formule
     Route::post('/tarif/edit/{formule_id}', [FormuleController::class, 'update']); // update formule

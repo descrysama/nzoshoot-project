@@ -15,7 +15,13 @@ const AlbumContent = ({isAuth}) => {
 
     useEffect(() => {
         ServiceAlbum.FetchAllImages(id).then(res => {
-            setImages(res)
+            setImages(res.sort((a , b) => {
+                if (a.item_order < b.item_order) {
+                    return -1
+                } else {
+                    return +1
+                }
+            }))
             setLoading(false)
         });
     }, [])

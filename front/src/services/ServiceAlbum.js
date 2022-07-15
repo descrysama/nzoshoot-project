@@ -117,3 +117,19 @@ export const OrderAlbum = async(albumid, direction) => {
     });
     return response;
 }
+
+export const OrderImage = async(imageid, direction) => {
+    let token = localStorage.getItem('session_token');
+    let response = await axios.post(`${process.env.REACT_APP_API}/image/order`, {
+        order: direction,
+        image_id: imageid,
+        session_token: token,
+    },
+    {
+        headers: {
+            "Content-type": "multipart/form-data", 
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+    return response;
+}
