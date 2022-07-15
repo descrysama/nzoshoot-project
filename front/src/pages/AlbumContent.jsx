@@ -10,10 +10,11 @@ const AlbumContent = ({isAuth}) => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation();
-    const { id } = location.state;
+    const id = location.pathname.split('/')[2];
     
 
     useEffect(() => {
+        console.log(location)
         ServiceAlbum.FetchAllImages(id).then(res => {
             setImages(res.sort((a , b) => {
                 if (a.item_order < b.item_order) {
